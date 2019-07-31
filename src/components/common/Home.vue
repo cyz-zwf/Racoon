@@ -20,26 +20,26 @@
         <!-- 底部的导航条 -->
         <mt-tabbar v-model="active" fixed>
             <mt-tab-item id="index" @click.native="ChangeState(0)">
-                <tabbaricon :selectedImage="require('../../assets/ic_weixin_selected.png')"
-            :normalImage="require('../../assets/ic_weixin_normal.png')"
+                <tabbaricon :selectedImage="require('../../assets/ic_index_selected.png')"
+            :normalImage="require('../../assets/ic_index_normal.png')"
             :focused="currentIndex[0].isSelect"></tabbaricon>
                 首页
             </mt-tab-item>
             <mt-tab-item id="list" @click.native="ChangeState(1)">
-               <tabbaricon :selectedImage="require('../../assets/ic_contacts_selected.png')"
-                :normalImage="require('../../assets/ic_contacts_normal.png')"
+               <tabbaricon :selectedImage="require('../../assets/ic_list_selected.png')"
+                :normalImage="require('../../assets/ic_list_normal.png')"
                 :focused="currentIndex[1].isSelect"></tabbaricon>
                 分页
             </mt-tab-item>
             <mt-tab-item id="shopping" @click.native="ChangeState(2)">
-                <tabbaricon :selectedImage="require('../../assets/ic_find_selected.png')"
-            :normalImage="require('../../assets/ic_find_normal.png')"
+                <tabbaricon :selectedImage="require('../../assets/ic_shop_selected.png')"
+            :normalImage="require('../../assets/ic_shop_normal.png')"
             :focused="currentIndex[2].isSelect"></tabbaricon>
                 购物车
             </mt-tab-item>
             <mt-tab-item id="myhome" @click.native="ChangeState(3)">
-                <tabbaricon :selectedImage="require('../../assets/ic_me_selected.png')"
-            :normalImage="require('../../assets/ic_me_normal.png')"
+                <tabbaricon :selectedImage="require('../../assets/ic_myhome_selected.png')"
+            :normalImage="require('../../assets/ic_myhome_normal.png')"
             :focused="currentIndex[3].isSelect"></tabbaricon>
                 我的浣熊
             </mt-tab-item>
@@ -87,6 +87,6 @@ export default {
     /* 修改组件选择的样式 */
     .mint-tabbar>.mint-tab-item.is-selected{
         background-color:transparent !important;
-        color:#45c018 !important;
+        color:#ff4202 !important;
     }
 </style>
