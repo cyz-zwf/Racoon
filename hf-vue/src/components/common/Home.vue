@@ -86,6 +86,7 @@ export default {
     }
     /* 修改组件选择的样式 */
     .mint-tabbar>.mint-tab-item.is-selected{
+        background-color:transparent !important;
         color:#45c018 !important;
     }
 </style>
