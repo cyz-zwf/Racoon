@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 引入组件
-import Home from './components/common/Home.vue'
+import Home from './components/Home.vue'
 
 Vue.use(Router)
 

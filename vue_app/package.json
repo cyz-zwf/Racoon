@@ -1,9 +1,9 @@
 {
-  "name": "xz_admin_v2",
+  "name": "hx_admin_v2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --port 8080 --host 127.0.0.1",
+    "serve": "vue-cli-service serve --port 8888 --host 127.0.0.1",
     "build": "vue-cli-service build"
   },
   "dependencies": {
