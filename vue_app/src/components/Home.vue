@@ -82,7 +82,7 @@ export default {
 <style scoped>
     /* 底部导航条组件默认样式  */
     .mint-tabbar>.mit-tab-item{
-        color:#999;
+        color:#fff;
     }
     /* 修改组件选择的样式 */
     .mint-tabbar>.mint-tab-item.is-selected{
