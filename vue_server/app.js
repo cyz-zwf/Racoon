@@ -25,8 +25,8 @@ app.use(
 	  credentials: true
 	})
   );
-  app.use(express.static("public"));
-app.listen(3050);
+app.use(express.static("public"));
+app.listen(5050);
 app.get("/index", (req, res) => {
 	var sql = "select hid,pic,href from hf_index_product";
 	pool.query(sql, (err, result) => {
