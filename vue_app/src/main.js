@@ -4,9 +4,9 @@ import router from './router'
 import store from './store'
 import axios from "axios"
 Vue.prototype.axios=axios
-import MintUi from "mint-ui"
+import MintUI from "mint-ui"
 import "mint-ui/lib/style.css"
-Vue.use(MintUi)
+Vue.use(MintUI)
 Vue.config.productionTip = false
 
 new Vue({
