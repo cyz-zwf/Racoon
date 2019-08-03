@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">浣熊 顶部导航条</router-link> 
       <router-link to="/about">0</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
