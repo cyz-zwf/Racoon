@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import Home from './components/Home.vue'
 import Cart from './components/Cart/Cart.vue'
 import MyRacoon from './components/myRacoon/MyRacoon.vue'
-import Cart from './components/common/Cart.vue'
 
 Vue.use(Router)
 
