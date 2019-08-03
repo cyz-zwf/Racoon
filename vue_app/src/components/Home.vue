@@ -10,7 +10,7 @@
             <mt-tab-container-item id="list">
                 这里是分类内容组件
             </mt-tab-container-item>
-            <mt-tab-container-item id="shopping">
+            <mt-tab-container-item id="cart">
                 这里是购物车内容组件
             </mt-tab-container-item>
             <mt-tab-container-item id="myhome">
@@ -29,9 +29,9 @@
                <tabbaricon :selectedImage="require('../assets/ic_list_selected.png')"
                 :normalImage="require('../assets/ic_list_normal.png')"
                 :focused="currentIndex[1].isSelect"></tabbaricon>
-                分页
+                分类
             </mt-tab-item>
-            <mt-tab-item id="shopping" @click.native="ChangeState(2)">
+            <mt-tab-item id="cart" @click.native="ChangeState(2)">
                 <tabbaricon :selectedImage="require('../assets/ic_shop_selected.png')"
             :normalImage="require('../assets/ic_shop_normal.png')"
             :focused="currentIndex[2].isSelect"></tabbaricon>
@@ -81,12 +81,12 @@ export default {
 </script>
 <style scoped>
     /* 底部导航条组件默认样式  */
-    .mint-tabbar>.mit-tab-item{
-        color:#fff;
+    .mint-tabbar>.mint-tab-item{
+        color:#999;
     }
     /* 修改组件选择的样式 */
     .mint-tabbar>.mint-tab-item.is-selected{
-        background-color:transparent !important;
-        color:#7A5228 !important;
+        background-color:transparent;
+        color:#7A5228;
     }
 </style>
