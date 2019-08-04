@@ -5,7 +5,7 @@
         <!-- 面板组件 -->
         <mt-tab-container v-model="active">
             <mt-tab-container-item id="index">
-                这里是主页内容组件
+                <indexs></indexs>
             </mt-tab-container-item>
             <mt-tab-container-item id="list">
                 这里是分类内容组件
@@ -49,14 +49,17 @@
 </template>
 <script>
 // 引入子组件
-import TabBarIcon from './common/TabBarIcon'  //引入底部导航图片组件
-import List from './list/List.vue' //引入分类子组件
+import TabBarIcon from './common/TabBarIcon';  //引入底部导航图片组件
+import List from './list/List.vue';//引入分类子组件
+import Indexs from './common/Index'
 
 export default {
     // 注册子组件
     components:{
         "tabbaricon" : TabBarIcon,  //注册底部导航图片组件
         "list": List, //注册分页子组件
+        "indexs":Indexs //主页中间部分
+
     },
     data(){
         return {
