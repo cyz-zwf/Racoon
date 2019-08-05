@@ -217,7 +217,7 @@ img {
 }
 .image-row-left-right {
   display: flex;
-  width: 10rem;
+  /* width: 10rem; */
 }
 .image-row-left-right .left {
   display: block;
@@ -245,11 +245,13 @@ img {
 }
 .channel {
   overflow: hidden;
+  margin:0 auto;
+      width: 10rem;
 }
 .channel .block {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 10rem;
   margin-left: 1px;
   box-sizing: border-box;
   overflow: hidden;
