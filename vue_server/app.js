@@ -14,13 +14,12 @@ var pool=mysql.createPool({
     port:3306,
     user:'root',
     password:'',
-    database:'hf',
+    database:'racoon',
     connectionLimit:15,
 });
 var app = express();
 app.use(
 	cors({
-	  // origin:["http://127.0.0.1:8080   ","http://localhost:8080"],
 	  origin: ["http://127.0.0.1:8888", "http://localhost:8888"],
 	  credentials: true
 	})
@@ -28,8 +27,8 @@ app.use(
 app.use(express.static("public"));
 app.listen(5050);
 app.get("/index", (req, res) => {
-	var sql = "select hid,pic,href from hf_index_product";
-	pool.query(sql, (err, result) => {
+	var sql = "select hid,pic,href from racoon_index_product";
+	pool.query(sql,[], (err, result) => {
 		if (err) throw err;
 		res.send({ code: 1, msg: "查询成功", data: result });
 	});
