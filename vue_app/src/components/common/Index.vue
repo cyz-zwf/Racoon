@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="app-index">
+    <div class="app-index" v-if="list!=''">
       <article class="image-row image-row-1">
         <a href="javascript:;" class="item" style="height: 0.604444rem;">
           <img :src="'http://127.0.0.1:5050/'+list[0].pic" alt />
@@ -28,15 +28,15 @@
       <article class="image-row image-row-left-right image-row-2">
         <section class="left">
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[38].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[37].pic" alt />
           </a>
         </section>
         <section class="right">
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[39].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[38].pic" alt />
           </a>
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[40].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[39].pic" alt />
           </a>
         </section>
       </article>
@@ -116,7 +116,7 @@
             <div class="entry-small">
               <p class="title" style="color: rgb(51, 51, 51);">好物推荐</p>
               <p class="block_benefit" style="color: rgb(255, 0, 0);">999+好评已种草</p>
-              <img class="block_image" :src="'http://127.0.0.1:5050/'+list[41].pic" alt />
+              <img class="block_image" :src="'http://127.0.0.1:5050/'+list[40].pic" alt />
             </div>
           </div>
           <div class="block_slot">
@@ -135,15 +135,14 @@
 export default {
   data() {
     return {
-      list: []
+      list: "",
     };
   },
   methods: {
     loadMore() {
       // 获取商品分页数据
       this.axios.get("index").then(result => {
-        console.log(result);
-        this.list = result.data.data;
+          this.list= result.data.data;
       });
     }
   },
