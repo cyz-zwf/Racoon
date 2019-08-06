@@ -43,7 +43,8 @@
           :selectedImage="require('../assets/ic_myhome_selected.png')"
           :normalImage="require('../assets/ic_myhome_normal.png')"
           :focused="currentIndex[3].isSelect"
-        ></tabbaricon>我的浣熊
+        >
+        </tabbaricon>我的浣熊
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -53,6 +54,8 @@
 import TabBarIcon from "./common/TabBarIcon"; //引入底部导航图片组件
 import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
+import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
+import MyRacoon from "./myRacoon/MyRacoon" //引入我的浣熊组件
 //import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 import Cart from "./Cart/Cart";  //引入购物车子组件
 
