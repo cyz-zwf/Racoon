@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="app-index">
+    <div class="app-index" v-if="list!=''">
       <article class="image-row image-row-1">
         <a href="javascript:;" class="item" style="height: 0.604444rem;">
           <img :src="'http://127.0.0.1:5050/'+list[0].pic" alt />
@@ -135,15 +135,14 @@
 export default {
   data() {
     return {
-      list: []
+      list: "",
     };
   },
   methods: {
     loadMore() {
       // 获取商品分页数据
       this.axios.get("index").then(result => {
-        console.log(result);
-        this.list = result.data.data;
+          this.list= result.data.data;
       });
     }
   },
