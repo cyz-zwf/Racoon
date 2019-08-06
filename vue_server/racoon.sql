@@ -18,7 +18,7 @@ CREATE TABLE racoon_index_product(
 /*****数据导入*****/
 /******************/
 /*****首页商品*****/
-INSERT INTO racoon_index_product VALUE
+INSERT INTO racoon_index_product VALUES
 (NULL,'img/fj-img/nav.webp',NULL),
 (NULL,'img/fj-img/head1.png',NULL),
 (NULL,'img/fj-img/head2.png',NULL),
@@ -61,3 +61,28 @@ INSERT INTO racoon_index_product VALUE
 (NULL,'img/fj-img/section9.gif',NULL),
 (NULL,'img/fj-img/section10.gif',NULL),
 (NULL,'img/fj-img/section22.webp',NULL);
+
+
+
+
+
+/*************购物车*************/
+CREATE TABLE racoon_cart(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  lid INT,
+  img_url VARCHAR(25),
+  price DECIMAL(10,2),
+  title VARCHAR(255),
+  spec VARCHAR(25),
+  count INT,
+  uid INT
+);
+INSERT INTO racoon_cart VALUES
+(null,247,"dior-perfume.webp",738,"Dior 迪奥 迪奥小姐花漾女士淡香水","100毫升",1,1),
+(null,181,"skii-cream.webp",1069,"SK-II 青春露 护肤精华露（神仙水）","230毫升",1,1),
+(null,951,"lamer-cream.webp",1999,"LA MER 海蓝之谜 精华乳霜","60毫升",1,1),
+(null,437,"gucci-perfume.webp",738,"GUCCI 古驰 花朵盛开淡香精","50毫升",1,1),
+(null,486,"lancome-lip.webp",259,"LANCÔME 兰蔻 菁纯丝绒雾面哑光唇膏","#196",1,1),
+(null,015,"pinko-bag.webp",1499,"PINKO 品高 MINI LOVE系列 女士铆钉装饰燕子包 斜挎包 迷你","黑色",1,1),
+(null,350,"kiehls-cream.webp",359,"Kiehl's 科颜氏 高保湿面霜","125毫升",1,1),
+(null,146,"switch.webp",2499,"任天堂（Nintendo）Switch 皮卡丘主题限定款便携掌上游戏机 Switch NS","黑色",1,1);

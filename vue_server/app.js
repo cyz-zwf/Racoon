@@ -11,11 +11,11 @@ const cors=require("cors");
 // 配置数据连接池
 var pool=mysql.createPool({
 	host:'127.0.0.1',
-    port:3306,
-    user:'root',
-    password:'',
-    database:'racoon',
-    connectionLimit:15,
+	port:3306,
+	user:'root',
+	password:'',
+	database:'racoon',
+	connectionLimit:15,
 });
 var app = express();
 app.use(
@@ -33,3 +33,11 @@ app.get("/index", (req, res) => {
 		res.send({ code: 1, msg: "查询成功", data: result });
 	});
 });
+app.get("/cart",(req,res) => {
+	var uid = req.query.uid;
+	var sql = "SELECT id,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
+	pool.query(sql,[uid],(err,result)=>{
+		if(err) throw err;
+		res.send({code:1,data:result});
+	})
+})
