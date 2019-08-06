@@ -7,13 +7,9 @@ axios.defaults.baseURL = "http://127.0.0.1:5050/"
 Vue.prototype.axios = axios
 import MintUI from "mint-ui"
 import "mint-ui/lib/style.css"
-/* 引入轮博图组件必备,务删,我试过,后果很严重!!! */
-import {
-    Swipe,
-    SwipeItem
-} from "mint-ui";
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
+import HeaderLb from './components/Index/HeaderLb.vue'
+// 全局轮播图,想用直接写<headerlb></headerlb>,无需担心路径
+Vue.component("headerlb", HeaderLb)
 
 Vue.use(MintUI)
 Vue.config.productionTip = false

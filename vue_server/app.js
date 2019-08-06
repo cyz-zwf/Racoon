@@ -28,7 +28,7 @@ app.use(express.static("public"));
 app.listen(5050);
 app.get("/index", (req, res) => {
 	var sql = "select hid,pic,href from racoon_index_product";
-	pool.query(sql,[], (err, result) => {
+	pool.query(sql, (err, result) => {
 		if (err) throw err;
 		res.send({ code: 1, msg: "查询成功", data: result });
 	});

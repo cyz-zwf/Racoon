@@ -53,15 +53,15 @@
 import TabBarIcon from "./common/TabBarIcon"; //引入底部导航图片组件
 import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
-import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
+//import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 
 export default {
   // 注册子组件
   components: {
     tabbaricon: TabBarIcon, //注册底部导航图片组件
     list: List, //注册分页子组件
-    indexs: Indexs, //主页中间部分
-    headerlb: HeaderLb // 注册顶部轮播图
+    indexs: Indexs //主页中间部分
+    // headerlb: HeaderLb // 注册顶部轮播图
   },
   data() {
     return {

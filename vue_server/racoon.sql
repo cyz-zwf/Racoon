@@ -56,7 +56,6 @@ INSERT INTO racoon_index_product VALUES
 (NULL,'img/fj-img/section19.webp',NULL),
 (NULL,'img/fj-img/section20.webp',NULL),
 (NULL,'img/fj-img/section21.webp',NULL),
-(NULL,'img/fj-img/section21.webp',NULL),
 (NULL,'img/fj-img/section8.gif',NULL),
 (NULL,'img/fj-img/section9.gif',NULL),
 (NULL,'img/fj-img/section10.gif',NULL),
