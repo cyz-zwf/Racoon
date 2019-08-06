@@ -27,13 +27,13 @@
           <div class="cartitem" v-for="(item,i) of list" :key="i">
             <div class="cartitem-left">
               <div class="checkbox">
-                <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" />
+                <img slot="icon" :src="item.cb?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'"  @click="check(item.id)"/>
               </div>
             </div>
             <div class="cartitem-right">
               <div class="cartitem-flex">
                 <div class="cartitem-image">
-                  <img :src="`http://127.0.0.1:5050/img/cart/${item.img_url}`" />
+                  <img :src="`http://127.0.0.1:5050/img/cart/${item.img_url}`"/>
                 </div>
                 <div class="cartitem-detail">
                   <div class="cartitem-title">
@@ -58,16 +58,16 @@
                       <div class="number-mvp">
                         <div class="number-mvp-inner">
                           <div class="number-minus">
-                            <div class="number-minus-inner"></div>
+                            <div class="number-minus-inner" @click="minus"></div>
                           </div>
                           <div class="number-value">{{item.count}}</div>
                           <div class="number-plus">
-                            <div class="number-plus-inner"></div>
+                            <div class="number-plus-inner" @click="plus"></div>
                           </div>
                         </div>
                       </div>
                       <div class="cartitem-del">
-                        <div class="cartitem-del-icon"></div>
+                        <div class="cartitem-del-icon" :data-id="item.id" @click="delItem"></div>
                       </div>
                     </div>
                   </div>
@@ -92,12 +92,34 @@ export default {
       var url="cart";
       var obj={uid:1};
       this.axios.get(url,{params:obj}).then(result=>{
-        console.log(result);
         var rows=result.data.data;
         for(var item of rows){
           item.cb=false;
         }
         this.list=rows;
+      })
+    },
+    check(id){
+      this.list[id-1].cb=!this.list[id-1].cb;
+    },
+    minus(){},
+    plus(){},
+    delItem(e){
+      var id=e.target.dataset.id;
+      this.$messagebox.confirm('',{
+        message:"确定要删除我吗~",
+        title:"很抢手哦~下次不一定能买到",
+        confirmButtonText:"留在购物车",
+        cancelButtonText:"狠心删除",
+      }).then(err=>{return}).catch(action=>{
+        var url="delItem";
+        var obj={id};
+        this.axios.get(url,{params:obj}).then(result=>{
+          this.LoadMore();
+          if(result.data.code>0){
+            this.$toast("删除成功")
+          }
+        })
       })
     }
   },
@@ -173,6 +195,9 @@ export default {
   color:#333;
 }
 /* 2.2商品主体 */
+.warehouse-body{
+  margin-bottom:1.5rem;
+}
 .cartitem{
   display: flex;
   color:#333;
@@ -213,6 +238,8 @@ export default {
   display: block;
 }
 .cartitem-detail{
+  width: 240px;
+  height: 95px;
   display: flex;
   flex-direction: column;
   padding: 0 .4rem 0 .32rem;
@@ -233,6 +260,7 @@ export default {
   margin-right: 2px;
   color: #ff1e32;
   border-radius: 8px;
+  box-sizing: border-box;
   border: 1px solid #ff1e32;
 } 
 .cartitem-title .tag span{

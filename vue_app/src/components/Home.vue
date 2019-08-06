@@ -12,7 +12,7 @@
         这里是分类内容组件
         <list></list>
       </mt-tab-container-item>
-      <mt-tab-container-item id="cart">这里是购物车内容组件</mt-tab-container-item>
+      <mt-tab-container-item id="cart"><cart></cart></mt-tab-container-item>
       <mt-tab-container-item id="myhome">这里是我的浣熊内容组件</mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
@@ -54,14 +54,16 @@ import TabBarIcon from "./common/TabBarIcon"; //引入底部导航图片组件
 import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
 //import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
+import Cart from "./Cart/Cart";  //引入购物车子组件
 
 export default {
   // 注册子组件
   components: {
     tabbaricon: TabBarIcon, //注册底部导航图片组件
     list: List, //注册分页子组件
-    indexs: Indexs //主页中间部分
+    indexs: Indexs, //主页中间部分
     // headerlb: HeaderLb // 注册顶部轮播图
+    cart:Cart,  //购物车部分
   },
   data() {
     return {
