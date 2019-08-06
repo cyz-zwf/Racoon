@@ -27,7 +27,7 @@
           <div class="cartitem" v-for="(item,i) of list" :key="i">
             <div class="cartitem-left">
               <div class="checkbox">
-                <img slot="icon" :src="item.cb?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'"  @click="check(item.id)"/>
+                <img slot="icon" :src="item.cb?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'"  @click="check" :data-i=i />
               </div>
             </div>
             <div class="cartitem-right">
@@ -58,11 +58,11 @@
                       <div class="number-mvp">
                         <div class="number-mvp-inner">
                           <div class="number-minus">
-                            <div class="number-minus-inner" @click="minus"></div>
+                            <div class="number-minus-inner" @click="minus" :data-i=i></div>
                           </div>
                           <div class="number-value">{{item.count}}</div>
                           <div class="number-plus">
-                            <div class="number-plus-inner" @click="plus"></div>
+                            <div class="number-plus-inner" @click="plus" :data-i=i></div>
                           </div>
                         </div>
                       </div>
@@ -78,17 +78,42 @@
         </div>
       </div>
     </div>
+    <!-- 3.底部 -->
+    <div class="fixed-bottom">
+      <div class="billvar">
+        <!-- 左侧全选框 -->
+        <div class="billbar-left">
+          <div class="checkbox">
+            <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" @click="checkAll"/>
+            <div style="margin-left:8px" @click="checkAll">全选</div>
+          </div>
+        </div>
+        <!-- 总价 -->
+        <div class="billbar-center">
+          <div class="billbar-price">
+            总价: <span>￥{{total}}</span>
+          </div>
+        </div>
+        <!-- 结算按钮 -->
+        <div class="billbar-right">
+          <div class="billbar-button">结算</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data(){
     return{
-      list:[]
+      list:[],
+      total:0,
+      // cb=true
     }
   },
   methods:{
     LoadMore(){
+      this.total=0;
       var url="cart";
       var obj={uid:1};
       this.axios.get(url,{params:obj}).then(result=>{
@@ -99,11 +124,38 @@ export default {
         this.list=rows;
       })
     },
-    check(id){
-      this.list[id-1].cb=!this.list[id-1].cb;
+    check(e){
+      var i=e.target.dataset.i;
+      var p;
+      var c;
+      this.total=0;
+      this.list[i].cb=!this.list[i].cb
+      for(var item of this.list){
+        p=item.price;
+        c=item.count;
+        if(item.cb){
+          this.total+=c*p;
+        }
+      }
     },
-    minus(){},
-    plus(){},
+    checkAll(){
+
+    },
+    minus(e){
+      var i=e.target.dataset.i;
+      if(this.list[i].count>1){
+        this.list[i].count-=1;
+      };
+      var url="updateCount";
+      // var obj={uid:1,}
+      // this.axios.get(url,)
+      // this.LoadMore();
+    },
+    plus(e){
+      var i=e.target.dataset.i;
+      this.list[i].count+=1;
+      // this.LoadMore();
+    },
     delItem(e){
       var id=e.target.dataset.id;
       this.$messagebox.confirm('',{
@@ -166,6 +218,8 @@ export default {
   box-sizing: border-box;
   background: #fafafa;
   border-bottom: 1px solid #ececec;
+  /* position: fixed;
+  z-index: 2; */
 }
 .warehouse-checkbox{
   width: 45px;
@@ -196,7 +250,7 @@ export default {
 }
 /* 2.2商品主体 */
 .warehouse-body{
-  margin-bottom:1.5rem;
+  margin-bottom:3rem;
 }
 .cartitem{
   display: flex;
@@ -238,8 +292,9 @@ export default {
   display: block;
 }
 .cartitem-detail{
-  width: 240px;
-  height: 95px;
+  /* width: 240px;
+  height: 95px; */
+  flex:1;
   display: flex;
   flex-direction: column;
   padding: 0 .4rem 0 .32rem;
@@ -379,5 +434,59 @@ export default {
   height: .44rem;
   background: url("http://127.0.0.1:5050/img/cart/cart_del.png") no-repeat 50% 50%;
   background-size: 100%;
+}
+/* 底部区域 */
+.fixed-bottom{
+  position: fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  z-index:2;
+  margin-bottom: 1.4rem;
+}
+.billvar{
+  display: flex;
+  align-items: stretch;
+  height:1.333333rem;
+  background: #fff;
+}
+.billbar-left,.billbar-center{
+  display: flex;
+  box-sizing: border-box;
+  border-top:1px solid #ccc;
+}
+.billbar-left{
+  font-size:12px;
+  align-items: center;
+  padding-left: .266667rem;
+  padding-left: .31rem;
+}
+.billbar-center{
+  flex:1;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: .266667rem;
+}
+.billbar-price{
+  font-size: 15px;
+  color: #333;
+}
+.billbar-price span{
+  color: #e31436;
+  font-weight: 700;
+}
+.billbar-right{
+  display: flex;
+  align-items: stretch;
+}
+.billbar-button{
+  display: flex;
+  color: #fff;
+  background: #e31436;
+  padding: 0 .666667rem;
+  font-size: 15px;
+  height: 1.33333rem;
+  align-items: center;
 }
 </style>

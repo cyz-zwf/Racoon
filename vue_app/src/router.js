@@ -6,6 +6,7 @@ import Home from './components/Home.vue'
 import MyRacoon from './components/myRacoon/MyRacoon.vue'
 
 import Index from './components/common/Index.vue'
+import Cart from './components/Cart/Cart.vue'
 
 import Login from './components/Index/Login.vue' // 登录vue
 
@@ -26,6 +27,10 @@ export default new Router({
         {
             path: '/MyRacoon',
             component: MyRacoon
+        },
+        {
+            path: '/Cart',
+            component: Cart
         },
         {
             path: '/Index',

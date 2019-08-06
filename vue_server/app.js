@@ -84,3 +84,13 @@ app.get("/addCart", (req, res) => {
 })
 // 测试：
 // http://127.0.0.1:5050/addCart?lid=648&price=738&img_url="dior-perfume.webp"&title="Dior 迪奥 迪奥小姐花漾女士淡香水"&spec="100毫升"&uid=1
+app.get("/updateCount",(req,res)=>{
+	var count=req.query.count;
+	var uid=req.query.uid;
+	var lid=req.query.lid;
+	sql = `UPDATE racoon_cart SET count=${count} WHERE lid=${lid} AND uid=${uid}`;
+	pool.query(sql,(err,result)=>{
+		if(err) throw err;
+		res.send({code:1,msg:"更新成功"})
+	})
+})
