@@ -33,8 +33,8 @@
       </mt-tab-item>
       <mt-tab-item id="cart" @click.native="ChangeState(2)">
         <tabbaricon
-          :selectedImage="require('../assets/ic_shop_selected.png')"
-          :normalImage="require('../assets/ic_shop_normal.png')"
+          :selectedImage="require('../assets/ic_cart_selected.png')"
+          :normalImage="require('../assets/ic_cart_normal.png')"
           :focused="currentIndex[2].isSelect"
         ></tabbaricon>购物车
       </mt-tab-item>
@@ -101,6 +101,6 @@ export default {
 /* 修改组件选择的样式 */
 .mint-tabbar > .mint-tab-item.is-selected {
   background-color: transparent;
-  color: #7a5228;
+  color: #ff1e32;
 }
 </style>

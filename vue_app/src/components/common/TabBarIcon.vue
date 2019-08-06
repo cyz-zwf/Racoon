@@ -15,8 +15,8 @@ export default {
 </script>
 <style scoped>
 .imgstyle {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 .mint-tabbar.is-fixed {
   width: 100%;
