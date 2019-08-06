@@ -58,6 +58,7 @@ import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
 import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 import MyRacoon from "./myRacoon/MyRacoon" //引入我的浣熊组件
+//import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 
 export default {
   // 注册子组件
@@ -67,6 +68,8 @@ export default {
     indexs: Indexs, //主页中间部分
     headerlb: HeaderLb, // 注册顶部轮播图
     myracoon: MyRacoon, //我的浣熊组件
+    indexs: Indexs //主页中间部分
+    // headerlb: HeaderLb // 注册顶部轮播图
   },
   data() {
     return {

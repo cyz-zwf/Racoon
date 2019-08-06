@@ -1,5 +1,14 @@
 <template>
   <div class="headerlb">
+    <div class="header-search">
+      <div class="header-input">
+        <span class="header-span-search"></span>
+        <span class="header-span-info">七夕日,爱的日</span>
+      </div>
+      <mt-button size="small" plain class="header-btn">登录</mt-button>
+      <a href="javascript:;" class="header-cart-a"></a>
+    </div>
+
     <mt-swipe :auto="3000">
       <mt-swipe-item v-for="(item,i) of items" :key="i">
         <a :href="item.href">

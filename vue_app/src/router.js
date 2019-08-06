@@ -8,15 +8,38 @@ import MyRacoon from './components/myRacoon/MyRacoon.vue'
 
 import Index from './components/common/Index.vue'
 
+import Login from './components/Index/Login.vue' // 登录vue
+
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-   //为组件指定访问路径
-   {path:'/Home',component:Home},
-   {path:'/MyRacoon',component:MyRacoon},
-   {path:'/Cart',component:Cart},
-   {path:'/Index',component:Index}
-  ]
+    routes: [
+        //为组件指定访问路径
+        {
+            path: '/',
+            component: Home
+        },
+        {
+            path: '/Home',
+            component: Home
+        },
+        {
+            path: '/MyRacoon',
+            component: MyRacoon
+        },
+        {
+            path: '/Cart',
+            component: Cart
+        },
+        {
+            path: '/Index',
+            component: Index
+        },
+        {
+            path: '/Login',
+            component: Login
+        }
+
+    ]
 })
