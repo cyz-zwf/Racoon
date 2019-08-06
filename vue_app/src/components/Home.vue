@@ -13,7 +13,9 @@
         <list></list>
       </mt-tab-container-item>
       <mt-tab-container-item id="cart">这里是购物车内容组件</mt-tab-container-item>
-      <mt-tab-container-item id="myhome">这里是我的浣熊内容组件</mt-tab-container-item>
+      <mt-tab-container-item id="myhome">
+        <myracoon></myracoon>
+      </mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
     <mt-tabbar v-model="active" fixed>
@@ -43,7 +45,8 @@
           :selectedImage="require('../assets/ic_myhome_selected.png')"
           :normalImage="require('../assets/ic_myhome_normal.png')"
           :focused="currentIndex[3].isSelect"
-        ></tabbaricon>我的浣熊
+        >
+        </tabbaricon>我的浣熊
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -54,6 +57,7 @@ import TabBarIcon from "./common/TabBarIcon"; //引入底部导航图片组件
 import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
 import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
+import MyRacoon from "./myRacoon/MyRacoon" //引入我的浣熊组件
 
 export default {
   // 注册子组件
@@ -61,7 +65,8 @@ export default {
     tabbaricon: TabBarIcon, //注册底部导航图片组件
     list: List, //注册分页子组件
     indexs: Indexs, //主页中间部分
-    headerlb: HeaderLb // 注册顶部轮播图
+    headerlb: HeaderLb, // 注册顶部轮播图
+    myracoon: MyRacoon, //我的浣熊组件
   },
   data() {
     return {
