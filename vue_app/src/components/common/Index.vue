@@ -28,15 +28,15 @@
       <article class="image-row image-row-left-right image-row-2">
         <section class="left">
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[38].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[37].pic" alt />
           </a>
         </section>
         <section class="right">
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[39].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[38].pic" alt />
           </a>
           <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+list[40].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+list[39].pic" alt />
           </a>
         </section>
       </article>
@@ -116,7 +116,7 @@
             <div class="entry-small">
               <p class="title" style="color: rgb(51, 51, 51);">好物推荐</p>
               <p class="block_benefit" style="color: rgb(255, 0, 0);">999+好评已种草</p>
-              <img class="block_image" :src="'http://127.0.0.1:5050/'+list[41].pic" alt />
+              <img class="block_image" :src="'http://127.0.0.1:5050/'+list[40].pic" alt />
             </div>
           </div>
           <div class="block_slot">

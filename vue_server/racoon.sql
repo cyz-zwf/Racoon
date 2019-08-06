@@ -19,7 +19,7 @@ CREATE TABLE racoon_index_product(
 /******************/
 /*****首页商品*****/
 INSERT INTO racoon_index_product VALUE
-(NULL,'img/fj-img/nav.webp',NULL),
+(NULL,'img/fj-img/nav.png',NULL),
 (NULL,'img/fj-img/head1.png',NULL),
 (NULL,'img/fj-img/head2.png',NULL),
 (NULL,'img/fj-img/head3.gif',NULL),
@@ -55,7 +55,6 @@ INSERT INTO racoon_index_product VALUE
 (NULL,'img/fj-img/section18.webp',NULL),
 (NULL,'img/fj-img/section19.webp',NULL),
 (NULL,'img/fj-img/section20.webp',NULL),
-(NULL,'img/fj-img/section21.webp',NULL),
 (NULL,'img/fj-img/section21.webp',NULL),
 (NULL,'img/fj-img/section8.gif',NULL),
 (NULL,'img/fj-img/section9.gif',NULL),
