@@ -245,8 +245,8 @@ img {
 }
 .channel {
   overflow: hidden;
-  margin:0 auto;
-      width: 10rem;
+  margin: 0 auto;
+  width: 10rem;
 }
 .channel .block {
   display: flex;
