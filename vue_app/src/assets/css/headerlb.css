@@ -16,6 +16,18 @@
     height: 23px;
     color: #e31436 !important;
     border: 1px solid #e31436 !important;
+    display: block;
+}
+
+.login-su {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: url('../ic_myhome_normal.png') no-repeat 0 center;
+    background-size: cover;
+    margin-left: 3px;
+    border-radius: 50%;
+    background-color: #ddd;
 }
 
 .header-input {

@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import axios from "axios"
 axios.defaults.baseURL = "http://127.0.0.1:5050/"
+// 7.配置axios 在发生ajax时,保存session信息
+axios.defaults.withCredentials = true;
 Vue.prototype.axios = axios
 import MintUI from "mint-ui"
 import "mint-ui/lib/style.css"

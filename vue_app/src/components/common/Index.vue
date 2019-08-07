@@ -135,14 +135,14 @@
 export default {
   data() {
     return {
-      list: "",
+      list: ""
     };
   },
   methods: {
     loadMore() {
       // 获取商品分页数据
       this.axios.get("index").then(result => {
-          this.list= result.data.data;
+        this.list = result.data.data;
       });
     }
   },

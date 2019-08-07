@@ -3,6 +3,17 @@ DROP DATABASE IF EXISTS racoon;
 CREATE DATABASE racoon  CHARSET=UTF8;
 USE racoon;
 
+/****用户登录****/
+CREATE TABLE racoon_login(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uname VARCHAR(50),
+    upwd VARCHAR(32)
+);
+INSERT INTO racoon_login VALUES 
+(null,'aaa',md5('123')),
+(null,'bbb',md5('456'));
+
+
 
 /****首页商品****/
 CREATE TABLE racoon_index_product(
