@@ -12,7 +12,6 @@
       <!-- 购物车a链接 -->
       <a href="javascript:;" class="header-cart-a"></a>
     </div>
-
     <mt-swipe :auto="3000">
       <mt-swipe-item v-for="(item,i) of items" :key="i">
         <a :href="item.href">

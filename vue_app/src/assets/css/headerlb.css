@@ -4,11 +4,17 @@
 
 .header-search {
     width: 100%;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     /* flex-direction: column; */
     align-items: center;
     justify-content: space-around;
+    /* overflow: hidden; */
+    height: 39px;
+    z-index: 1000;
+    background-color: #fff;
 }
 
 .header-btn {
@@ -94,6 +100,7 @@
 
 .mint-swipe {
     height: 187px;
+    margin-top: 39px;
 }
 
 .mint-swipe .mint-swipe-indicators {

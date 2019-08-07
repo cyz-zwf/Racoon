@@ -110,7 +110,10 @@ app.get("/cart", (req, res) => {
     var sql = "SELECT id,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
     pool.query(sql, [uid], (err, result) => {
         if (err) throw err;
-        res.send({ code: 1, data: result });
+        res.send({
+            code: 1,
+            data: result
+        });
     })
 })
 app.get("/delItem", (req, res) => {
@@ -119,9 +122,15 @@ app.get("/delItem", (req, res) => {
     pool.query(sql, [id], (err, result) => {
         if (err) throw err;
         if (result.affectedRows > 0) {
-            res.send({ code: 1, msg: "删除成功" });
+            res.send({
+                code: 1,
+                msg: "删除成功"
+            });
         } else {
-            res.send({ code: -1, msg: "删除失败" })
+            res.send({
+                code: -1,
+                msg: "删除失败"
+            })
         }
     })
 })
@@ -132,9 +141,17 @@ app.get("/addCart", (req, res) => {
     var title = req.query.title;
     var spec = req.query.spec;
     var img_url = req.query.img_url;
+<<<<<<< HEAD
     var uid = req.session.uid;
+=======
+    var uid = req.query.uid; //在没有登录功能时使用
+    //var uid = req.session.uid;  //有登录功能时使用
+>>>>>>> f9c562ab570f8479e8643d42b19518e6bdd2c303
     if (!uid) {
-        res.send({ code: -1, msg: "请先登录" });
+        res.send({
+            code: -1,
+            msg: "请先登录"
+        });
         return;
     }
     // console.log(lid,price,title,uid)
@@ -149,7 +166,10 @@ app.get("/addCart", (req, res) => {
         }
         pool.query(sql, (err, result) => {
             if (err) throw err;
-            res.send({ code: 1, msg: "添加成功" })
+            res.send({
+                code: 1,
+                msg: "添加成功"
+            })
         })
     })
 })
@@ -163,6 +183,9 @@ app.get("/updateCount", (req, res) => {
     sql = `UPDATE racoon_cart SET count=${count} WHERE lid=${lid} AND uid=${uid}`;
     pool.query(sql, (err, result) => {
         if (err) throw err;
-        res.send({ code: 1, msg: "更新成功" })
+        res.send({
+            code: 1,
+            msg: "更新成功"
+        })
     })
 })
