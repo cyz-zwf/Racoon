@@ -3,10 +3,10 @@ import Router from 'vue-router'
 // 引入组件
 
 import Home from './components/Home.vue'
-import Cart from './components/Cart/Cart.vue'
 import MyRacoon from './components/myRacoon/MyRacoon.vue'
 
 import Index from './components/common/Index.vue'
+import Cart from './components/Cart/Cart.vue'
 
 import Login from './components/Index/Login.vue' // 登录vue
 

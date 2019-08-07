@@ -13,12 +13,13 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 .imgstyle {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
 }
 .mint-tabbar.is-fixed {
   width: 100%;
+  border-top:.5px solid #e5e5e5;
 }
 </style>
