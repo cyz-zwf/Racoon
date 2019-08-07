@@ -141,12 +141,7 @@ app.get("/addCart", (req, res) => {
     var title = req.query.title;
     var spec = req.query.spec;
     var img_url = req.query.img_url;
-<<<<<<< HEAD
     var uid = req.session.uid;
-=======
-    var uid = req.query.uid; //在没有登录功能时使用
-    //var uid = req.session.uid;  //有登录功能时使用
->>>>>>> f9c562ab570f8479e8643d42b19518e6bdd2c303
     if (!uid) {
         res.send({
             code: -1,
