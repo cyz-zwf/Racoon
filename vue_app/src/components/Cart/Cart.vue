@@ -6,7 +6,7 @@
       <mt-button slot="right" class="top_btn"></mt-button>
     </mt-header>
     <!-- 2.商品 -->
-    <div class="warehouse-w">
+    <div class="warehouse-w" style="display:block">
       <div class="warehouse">
         <!-- 2.1商品头部 -->
         <div class="warehouse-header">
@@ -77,27 +77,33 @@
           </div>
         </div>
       </div>
+      <!-- 3.底部 -->
+      <div class="fixed-bottom">
+        <div class="billvar">
+          <!-- 左侧全选框 -->
+          <div class="billbar-left">
+            <div class="checkbox">
+              <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" @click="checkAll"/>
+              <div style="margin-left:8px" @click="checkAll">全选</div>
+            </div>
+          </div>
+          <!-- 总价 -->
+          <div class="billbar-center">
+            <div class="billbar-price">
+              总价: <span>￥{{total}}</span>
+            </div>
+          </div>
+          <!-- 结算按钮 -->
+          <div class="billbar-right">
+            <div class="billbar-button">结算</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- 3.底部 -->
-    <div class="fixed-bottom">
-      <div class="billvar">
-        <!-- 左侧全选框 -->
-        <div class="billbar-left">
-          <div class="checkbox">
-            <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" @click="checkAll"/>
-            <div style="margin-left:8px" @click="checkAll">全选</div>
-          </div>
-        </div>
-        <!-- 总价 -->
-        <div class="billbar-center">
-          <div class="billbar-price">
-            总价: <span>￥{{total}}</span>
-          </div>
-        </div>
-        <!-- 结算按钮 -->
-        <div class="billbar-right">
-          <div class="billbar-button">结算</div>
-        </div>
+    <div class="unlogin-page" style="display:none">
+      <div class="unlogin-page-inner">
+        <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png"></div>
+        <div></div>
       </div>
     </div>
   </div>
@@ -117,11 +123,15 @@ export default {
       var url="cart";
       var obj={uid:1};
       this.axios.get(url,{params:obj}).then(result=>{
-        var rows=result.data.data;
-        for(var item of rows){
-          item.cb=false;
+        if(result.data.code>0){
+          var rows=result.data.data;
+          for(var item of rows){
+            item.cb=false;
+          }
+          this.list=rows;
+        }else{
+
         }
-        this.list=rows;
       })
     },
     check(e){
