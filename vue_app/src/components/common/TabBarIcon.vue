@@ -20,6 +20,6 @@ export default {
 }
 .mint-tabbar.is-fixed {
   width: 100%;
-  border-top:.5px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
 }
 </style>

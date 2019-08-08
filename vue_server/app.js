@@ -103,17 +103,24 @@ app.get("/sessinfo", (req, res) => {
 /* 购物车功能 */
 app.get("/cart", (req, res) => {
     var uid = req.session.uid;
-    if (!uid) {
+    if (!uid) { //未登录
         res.send({ code: -1, msg: "请先登录" });
         return;
     }
-    var sql = "SELECT id,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
+    var sql = "SELECT id,lid,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
     pool.query(sql, [uid], (err, result) => {
         if (err) throw err;
-        res.send({
-            code: 1,
-            data: result
-        });
+        if(result.length>0){ //购物车有商品
+            res.send({
+                code: 1,
+                data: result
+            });
+        }else{ //购物车无商品
+            res.send({
+                code: 0,
+                msg:"购物车空空如也"
+            });
+        }
     })
 })
 app.get("/delItem", (req, res) => {

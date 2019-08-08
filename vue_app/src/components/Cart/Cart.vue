@@ -6,19 +6,20 @@
       <mt-button slot="right" class="top_btn"></mt-button>
     </mt-header>
     <!-- 2.商品 -->
-    <div class="warehouse-w" style="display:block">
+    <!-- 正常显示的界面 -->
+    <div class="warehouse-w" v-if="isLogin==1">
       <div class="warehouse">
         <!-- 2.1商品头部 -->
         <div class="warehouse-header">
             <!-- 2.1.1选中框 -->
           <div class="warehouse-checkbox">
             <div class="checkbox">
-              <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" />
+              <img slot="icon" :src="ca?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'" @click="checkAll" />
             </div>
           </div>
           <!-- 2.1.2 -->
           <div class="warehouse-name">
-            <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_ziying.png" />
+            <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_ziying.png"  />
             <router-link to="/" class="warehouse-shop-link">自营直邮仓</router-link>
           </div>
         </div>
@@ -58,11 +59,12 @@
                       <div class="number-mvp">
                         <div class="number-mvp-inner">
                           <div class="number-minus">
-                            <div class="number-minus-inner" @click="minus" :data-i=i></div>
+                            <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
-                          <div class="number-value">{{item.count}}</div>
+                          <input type="text" v-model="count[i]" class="number-value">
+                          <!-- <div class="number-value">{{item.count}}</div> -->
                           <div class="number-plus">
-                            <div class="number-plus-inner" @click="plus" :data-i=i></div>
+                            <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
                         </div>
                       </div>
@@ -83,7 +85,7 @@
           <!-- 左侧全选框 -->
           <div class="billbar-left">
             <div class="checkbox">
-              <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_unselected.png" @click="checkAll"/>
+              <img slot="icon" :src="ca?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'" @click="checkAll"/>
               <div style="margin-left:8px" @click="checkAll">全选</div>
             </div>
           </div>
@@ -100,10 +102,25 @@
         </div>
       </div>
     </div>
-    <div class="unlogin-page" style="display:none">
+    <!-- 购物车空时显示的界面 -->
+    <div class="cartempty-page" v-else-if="isLogin==0">
+      <div class="cartempty-page-inner">
+        <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png" class="cartempty-page-icon"></div>
+        <div class="cartempty-page-text">购物车空空如也，赶紧去逛逛吧!</div>
+        <div>
+          <a href="http://127.0.0.1:8888/#/Home" class="cartempty-page-button">去逛逛</a>
+        </div>
+      </div>
+    </div>
+    <!-- 未登录时显示的界面 -->
+    <div class="unlogin-page" v-else>
+      <!-- <div><img src="http://127.0.0.1:5050/img/cart/nav.png" class="unlogin-page-nav"></div> -->
       <div class="unlogin-page-inner">
-        <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png"></div>
-        <div></div>
+        <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png" class="unlogin-page-icon"></div>
+        <div class="unlogin-page-text">那么多好商品，你都不加购物车?</div>
+        <div>
+          <a href="http://127.0.0.1:8888/#/Login" class="unlogin-page-button">登录并同步购物车商品</a>
+        </div>
       </div>
     </div>
   </div>
@@ -112,32 +129,43 @@
 export default {
   data(){
     return{
+      count:[],
       list:[],
       total:0,
-      // cb=true
+      isLogin:1,
+      ca:false
     }
   },
   methods:{
     LoadMore(){
       this.total=0;
+      this.ca=0;
       var url="cart";
-      var obj={uid:1};
-      this.axios.get(url,{params:obj}).then(result=>{
+      this.axios.get(url).then(result=>{
         if(result.data.code>0){
           var rows=result.data.data;
+          var i=0;
           for(var item of rows){
-            item.cb=false;
+            if(item.cb==undefined){
+              item.cb=false;
+            }else{
+              console.log(1)
+            }
+            this.count[i]=item.count;
+            i++;
           }
           this.list=rows;
+          this.isLogin=1;
+        }else if(result.data.code<0){
+          this.isLogin=-1;
         }else{
-
+          this.isLogin=0;
         }
       })
     },
     check(e){
       var i=e.target.dataset.i;
-      var p;
-      var c;
+      var p,c;
       this.total=0;
       this.list[i].cb=!this.list[i].cb
       for(var item of this.list){
@@ -149,22 +177,48 @@ export default {
       }
     },
     checkAll(){
-
+      this.ca=!this.ca;
+      if(this.ca){
+        for(var item of this.list){
+          item.cb=true;
+          var p=item.price;
+          var c=item.count;
+          this.total+=c*p;
+        }
+      }else{
+        for(var item of this.list){
+          item.cb=false;
+          this.total=0;
+        }
+      }
     },
     minus(e){
       var i=e.target.dataset.i;
+      var lid=e.target.dataset.lid;
       if(this.list[i].count>1){
         this.list[i].count-=1;
       };
+      this.count[i]=this.list[i].count
+      //发送axios请求
       var url="updateCount";
-      // var obj={uid:1,}
-      // this.axios.get(url,)
-      // this.LoadMore();
+      var obj={count:this.count[i],lid};
+      this.axios.get(url,{params:obj}).then(result=>{
+        this.LoadMore();
+      }) 
     },
     plus(e){
       var i=e.target.dataset.i;
+      // this.count[i]+=1;
+      // console.log(this.count[i])
+      var lid=e.target.dataset.lid;
       this.list[i].count+=1;
-      // this.LoadMore();
+      this.count[i]=this.list[i].count;
+      //发送axios请求
+      var url="updateCount";
+      var obj={count:this.count[i],lid};
+      this.axios.get(url,{params:obj}).then(result=>{
+        this.LoadMore();
+      })
     },
     delItem(e){
       var id=e.target.dataset.id;
@@ -187,7 +241,17 @@ export default {
   },
   created(){
     this.LoadMore()
-  }
+  },
+  watch:{
+    count(){
+      
+    }
+  },
+  // mounted(){ //为list中每一项添加cb属性
+  //   this.list.map(function(item){
+  //     this.$set(item,"cb",true)
+  //   })
+  // }
 }
 </script>
 <style scoped>
@@ -405,10 +469,14 @@ export default {
   background: #666;
 }
 .number-value{
-  min-width: 1.093333rem;
+  width: 1.093333rem;
+  /* width: 42px; */
   line-height: .666667rem;
   text-align: center;
   font-weight: 700;
+  border:0;
+  padding:0;
+  background: #fff;
 }
 .number-plus{
   width: .666667rem;
@@ -452,7 +520,7 @@ export default {
   bottom:0;
   width:100%;
   z-index:2;
-  margin-bottom: 1.4rem;
+  margin-bottom: 53px;
 }
 .billvar{
   display: flex;
@@ -498,5 +566,83 @@ export default {
   font-size: 15px;
   height: 1.33333rem;
   align-items: center;
+}
+/* 未登录显示的界面 */
+.unlogin-page{
+  position: fixed;
+  top: 45px;
+  width:100%;
+  height: 100%;
+  background: #fff;
+  font-size:15px;
+}
+.unlogin-page,.unlogin-page-inner{
+  /* margin-top: 45px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unlogin-page-inner{
+  flex-direction: column;
+  margin-top: -80px;
+}
+.unlogin-page-icon{
+  width: 2.666667rem;
+  height:2.666667rem;
+}
+.unlogin-page-text{
+  margin: .533333rem 0 .8rem;
+  color:#333;
+}
+.unlogin-page-button{
+  text-decoration: none;
+  display: block;
+  width: 4.5rem;
+  height: 1.066667rem;
+  background: #ff1e32;
+  color: #fff;
+  border-radius: .5rem;
+  text-align: center;
+  line-height: 1.066667rem;
+  font-size:14px;
+}
+/* 空购物车的界面 */
+.cartempty-page{
+  position: fixed;
+  top: 45px;
+  width:100%;
+  height: 100%;
+  background: #fff;
+  font-size:15px;
+}
+.cartempty-page,.cartempty-page-inner{
+  /* margin-top: 45px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cartempty-page-inner{
+  flex-direction: column;
+  margin-top: -80px;
+}
+.cartempty-page-icon{
+  width: 2.666667rem;
+  height:2.666667rem;
+}
+.cartempty-page-text{
+  margin: .533333rem 0 .8rem;
+  color:#333;
+}
+.cartempty-page-button{
+  text-decoration: none;
+  display: block;
+  width: 2.5rem;
+  height: 1.066667rem;
+  background: #ff1e32;
+  color: #fff;
+  border-radius: .5rem;
+  text-align: center;
+  line-height: 1.066667rem;
+  font-size:14px;
 }
 </style>
