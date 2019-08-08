@@ -1,0 +1,94 @@
+.headerlb {
+    position: relative;
+}
+
+.header-search {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-around;
+    /* overflow: hidden; */
+    height: 39px;
+    z-index: 1000;
+    background-color: #fff;
+}
+
+.header-btn {
+    padding: 0 5px;
+    height: 23px;
+    color: #e31436 !important;
+    border: 1px solid #e31436 !important;
+    display: block;
+}
+
+.login-su {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: url('../ic_myhome_normal.png') no-repeat 0 center;
+    background-size: cover;
+    margin-left: 3px;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.header-input {
+    width: 70%;
+    height: 25px;
+    border: 2px solid #e31436;
+    border-radius: 30px;
+    margin: 5px 0;
+}
+
+.header-cart-a {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../header_cart_icon.png') no-repeat center center;
+    background-size: cover;
+    margin-right: 5px;
+}
+
+.header-span-search {
+    position: absolute;
+    display: block;
+    top: 5px;
+    left: 16px;
+    width: 15px;
+    height: 30px;
+    background: url('../ic_header_search.png') no-repeat 0px center;
+    background-size: contain;
+}
+
+.header-span-info {
+    position: absolute;
+    display: block;
+    top: 14px;
+    left: 35px;
+    font-size: 13px;
+    color: #727273;
+}
+
+.headerlb-sp {
+    position: absolute;
+    bottom: 41px;
+    left: 18px;
+    color: #fff;
+    background-size: cover;
+    background: url("http://127.0.0.1:5050/img/haderimg/kk.png") no-repeat top center;
+}
+
+.headerlb-sp .fi-span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    text-align: center;
+    line-height: 20px;
+    /* border: 1px solid #f00; */
+}
