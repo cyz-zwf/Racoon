@@ -10,7 +10,7 @@
         <i class="login-su" :style="loginIcon" @click="myhuanxiong"></i>
       </div>
       <!-- 购物车a链接 -->
-      <a href="javascript:;" class="header-cart-a"></a>
+      <router-link to="/Cart" class="header-cart-a"></router-link>
     </div>
   </div>
 </template>
