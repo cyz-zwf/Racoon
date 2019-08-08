@@ -10,7 +10,6 @@ import Cart from './components/Cart/Cart.vue'
 
 import Login from './components/Index/Login.vue' // 登录vue
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -39,7 +38,8 @@ export default new Router({
         {
             path: '/Login',
             component: Login
-        }
+        },
+
 
     ]
 })

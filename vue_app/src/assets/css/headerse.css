@@ -92,18 +92,3 @@
     line-height: 20px;
     /* border: 1px solid #f00; */
 }
-
-.hederlb-img {
-    width: 100%;
-    /* height: 200px; */
-}
-
-.mint-swipe {
-    height: 187px;
-    margin-top: 39px;
-}
-
-.mint-swipe .mint-swipe-indicators {
-    bottom: 8px;
-    opacity: 0.5;
-}
