@@ -191,3 +191,13 @@ app.get("/updateCount", (req, res) => {
         })
     })
 })
+app.get("/recommend",(req,res)=>{
+    var sql = "SELECT id,lid,img_url,price,title FROM racoon_recommend";
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            data: result
+        });
+    })
+})

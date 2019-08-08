@@ -61,7 +61,7 @@
                           <div class="number-minus">
                             <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
-                          <input type="text" v-model="count[i]" class="number-value">
+                          <input type="text" v-model="count[i]" class="number-value" disabled>
                           <!-- <div class="number-value">{{item.count}}</div> -->
                           <div class="number-plus">
                             <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid"></div>
@@ -123,9 +123,13 @@
         </div>
       </div>
     </div>
+    <recommend></recommend>
   </div>
+  
 </template>
 <script>
+// 引用recommend组件
+import Recommend from "../common/Recommend"
 export default {
   data(){
     return{
@@ -133,6 +137,7 @@ export default {
       list:[],
       total:0,
       isLogin:1,
+      // ca变量绑定全选框状态
       ca:false
     }
   },
@@ -143,19 +148,15 @@ export default {
       var url="cart";
       this.axios.get(url).then(result=>{
         if(result.data.code>0){
+          this.isLogin=1;
           var rows=result.data.data;
           var i=0;
           for(var item of rows){
-            if(item.cb==undefined){
-              item.cb=false;
-            }else{
-              console.log(1)
-            }
+            item.cb=false;
             this.count[i]=item.count;
             i++;
           }
           this.list=rows;
-          this.isLogin=1;
         }else if(result.data.code<0){
           this.isLogin=-1;
         }else{
@@ -168,12 +169,19 @@ export default {
       var p,c;
       this.total=0;
       this.list[i].cb=!this.list[i].cb
+      var flag=true;
       for(var item of this.list){
         p=item.price;
         c=item.count;
         if(item.cb){
           this.total+=c*p;
+        }else{
+          this.ca=false;
+          flag=false;
         }
+      }
+      if(flag){
+        this.ca=true;
       }
     },
     checkAll(){
@@ -240,18 +248,13 @@ export default {
     }
   },
   created(){
-    this.LoadMore()
+    this.LoadMore();
   },
-  watch:{
-    count(){
-      
-    }
+  mounted(){ //为list中每一项添加cb属性
   },
-  // mounted(){ //为list中每一项添加cb属性
-  //   this.list.map(function(item){
-  //     this.$set(item,"cb",true)
-  //   })
-  // }
+  components:{
+    "recommend":Recommend
+  }
 }
 </script>
 <style scoped>
@@ -324,7 +327,7 @@ export default {
 }
 /* 2.2商品主体 */
 .warehouse-body{
-  margin-bottom:3rem;
+  margin-bottom:1rem;
 }
 .cartitem{
   display: flex;
@@ -569,22 +572,22 @@ export default {
 }
 /* 未登录显示的界面 */
 .unlogin-page{
-  position: fixed;
+  position: relative;
   top: 45px;
   width:100%;
   height: 100%;
   background: #fff;
   font-size:15px;
+  padding:40px 0;
+  margin-bottom: 45px;
 }
 .unlogin-page,.unlogin-page-inner{
-  /* margin-top: 45px; */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .unlogin-page-inner{
   flex-direction: column;
-  margin-top: -80px;
 }
 .unlogin-page-icon{
   width: 2.666667rem;
@@ -608,12 +611,14 @@ export default {
 }
 /* 空购物车的界面 */
 .cartempty-page{
-  position: fixed;
+  position: relative;
   top: 45px;
   width:100%;
   height: 100%;
   background: #fff;
   font-size:15px;
+  padding:40px 0;
+  margin-bottom: 45px;
 }
 .cartempty-page,.cartempty-page-inner{
   /* margin-top: 45px; */
@@ -623,7 +628,6 @@ export default {
 }
 .cartempty-page-inner{
   flex-direction: column;
-  margin-top: -80px;
 }
 .cartempty-page-icon{
   width: 2.666667rem;
