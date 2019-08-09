@@ -27,7 +27,7 @@
       <div class="flex status_list_item">
         <div style="width:35px;height:35px">
           <img
-            style="width:25px;height:25px"
+            style="width:30px;height:28px"
             src="http://127.0.0.1:5050/img/myracoon/pendingPayment.png"
           />
         </div>
@@ -35,13 +35,13 @@
       </div>
       <div class="flex status_list_item">
         <div style="width:35px;height:35px">
-          <img style="width:30px;height:30px" src="http://127.0.0.1:5050/img/myracoon/deliver.png" />
+          <img style="width:28px;height:28px" src="http://127.0.0.1:5050/img/myracoon/deliver.png" />
         </div>
         <div>待发货</div>
       </div>
       <div class="flex status_list_item">
         <div style="width:35px;height:35px">
-          <img style="width:35px;height:35px" src="http://127.0.0.1:5050/img/myracoon/receipt.png" />
+          <img style="width:30px;height:30px" src="http://127.0.0.1:5050/img/myracoon/receipt.png" />
         </div>
         <div>待收货</div>
       </div>
@@ -55,11 +55,15 @@
     <div style="background:#f0f0f0;height:10px"></div>
     <div class="bottom_base">
       <span>我的优惠券</span>
-      <div>0张优惠券</div>
+      <div>68张优惠券</div>
     </div>
     <div class="bottom_base">
-      <span>我的红包</span>
-      <div>总额0元</div>
+      <span>我的钱包</span>
+      <div>总额100亿</div>
+    </div>
+    <div class="bottom_base">
+      <span>我的关注</span>
+      <div></div>
     </div>
     <div class="bottom_base">
       <span>我的收藏</span>
@@ -69,12 +73,42 @@
       <span>关于浣熊</span>
       <div></div>
     </div>
+    <div>
+      <div class="bottom_list">
+        <div>首页</div>
+        <span>|</span>
+        <div>客户端</div>
+        <span>|</span>
+        <div>小浣熊</div>
+        <span>|</span>
+        <div @click="exit">退出</div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {};
+  },
+  methods: {
+    exit() {
+      // console.log(111);
+      // this.$messagebox.confirm("是否确认退出?").then(action => {
+      //   console.log(222);
+      //   var url = "logout";
+      //   this.axios.get(url).then(res => {
+      //     console.log(333)
+      //     this.$toast("退出成功")
+      //   });
+      // });    
+      var url = "logout";
+      this.axios.get(url).then(res=>{
+        console.log(111);
+        this.$router.push("/")
+        console.log(222);
+      })
+    }
   }
 };
 </script>
@@ -166,11 +200,21 @@ export default {
   font-size: 15px;
   padding: 0 15px;
 }
-.bottom_base>div,.search_all{
-  background-image:url(http://127.0.0.1:5050/img/myracoon/right.png);
+.bottom_base > div,
+.search_all {
+  background-image: url(http://127.1:5050/img/myracoon/right.png);
   background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: center right;
-  padding-right:25px;
+  padding-right: 25px;
+}
+.bottom_list {
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  color: #848689;
+  font-size: 13px;
+  padding: 20px 25px;
+  align-items: center;
 }
 </style>
