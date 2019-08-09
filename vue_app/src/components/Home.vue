@@ -5,18 +5,22 @@
     <!-- 面板组件 -->
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="index">
-        <headerlb></headerlb>
+        <!-- 主页内容 -->
+        <headerlb></headerlb> 
         <indexs></indexs>
       </mt-tab-container-item>
       <mt-tab-container-item id="list">
-        这里是分类内容组件
+        <!-- 分类页内容 -->
         <list></list>
       </mt-tab-container-item>
-      <mt-tab-container-item id="cart"><cart></cart></mt-tab-container-item>
+      <mt-tab-container-item id="cart">
+        <!-- 购物车页内容 -->
+        <cart></cart>
+      </mt-tab-container-item>
       <mt-tab-container-item id="myhome">这里是我的浣熊内容组件</mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
-    <mt-tabbar v-model="active" fixed>
+    <mt-tabbar v-model="active" fixed style="z-index:3">
       <mt-tab-item id="index" @click.native="ChangeState(0)">
         <tabbaricon
           :selectedImage="require('../assets/ic_index_selected.png')"
@@ -56,7 +60,6 @@ import List from "./list/List.vue"; //引入分类子组件
 import Indexs from "./common/Index"; // 引入主页子组件
 import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 import MyRacoon from "./myRacoon/MyRacoon" //引入我的浣熊组件
-//import HeaderLb from "./Index/HeaderLb"; // 引入顶部轮播图
 import Cart from "./Cart/Cart";  //引入购物车子组件
 
 export default {
@@ -65,7 +68,7 @@ export default {
     tabbaricon: TabBarIcon, //注册底部导航图片组件
     list: List, //注册分页子组件
     indexs: Indexs, //主页中间部分
-    // headerlb: HeaderLb // 注册顶部轮播图
+    myracoon: MyRacoon, //我的浣熊组件
     cart:Cart,  //购物车部分
   },
   data() {
