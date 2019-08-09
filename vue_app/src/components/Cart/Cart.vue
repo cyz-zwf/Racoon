@@ -61,7 +61,7 @@
                           <div class="number-minus">
                             <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
-                          <input type="text" v-model="count[i]" class="number-value" disabled>
+                          <input type="text" v-model="item.count" class="number-value" disabled>
                           <!-- <div class="number-value">{{item.count}}</div> -->
                           <div class="number-plus">
                             <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid"></div>
@@ -133,7 +133,7 @@ import Recommend from "../common/Recommend"
 export default {
   data(){
     return{
-      count:[],
+      // count:[],
       list:[],
       total:0,
       isLogin:1,
@@ -143,26 +143,43 @@ export default {
   },
   methods:{
     LoadMore(){
-      this.total=0;
+      
       this.ca=0;
       var url="cart";
       this.axios.get(url).then(result=>{
         if(result.data.code>0){
           this.isLogin=1;
-          var rows=result.data.data;
-          var i=0;
-          for(var item of rows){
-            item.cb=false;
-            this.count[i]=item.count;
-            i++;
-          }
-          this.list=rows;
+          this.list=result.data.data;
+          // var i=0;
+          // for(var item of rows){
+          //   // item.cb=false;
+          //   this.count[i]=item.count;
+          //   i++;
+          // }
         }else if(result.data.code<0){
           this.isLogin=-1;
         }else{
           this.isLogin=0;
         }
       })
+    },
+    updateCount(){
+      this.total=0;
+      var url="cart";
+      this.axios.get(url).then(result=>{
+        var rows=result.data.data;
+        var i=0;
+        for(var item of rows){
+          this.list[i].count=rows[i].count;
+        }
+      })
+      for(var item of this.list){
+        var p=item.price;
+        var c=item.count;
+        if(item.cb){
+          this.total+=c*p;
+        }
+      }
     },
     check(e){
       var i=e.target.dataset.i;
@@ -206,12 +223,11 @@ export default {
       if(this.list[i].count>1){
         this.list[i].count-=1;
       };
-      this.count[i]=this.list[i].count
       //发送axios请求
       var url="updateCount";
-      var obj={count:this.count[i],lid};
+      var obj={count:this.list[i].count,lid};
       this.axios.get(url,{params:obj}).then(result=>{
-        this.LoadMore();
+        this.updateCount();
       }) 
     },
     plus(e){
@@ -220,12 +236,11 @@ export default {
       // console.log(this.count[i])
       var lid=e.target.dataset.lid;
       this.list[i].count+=1;
-      this.count[i]=this.list[i].count;
       //发送axios请求
       var url="updateCount";
-      var obj={count:this.count[i],lid};
+      var obj={count:this.list[i].count,lid};
       this.axios.get(url,{params:obj}).then(result=>{
-        this.LoadMore();
+        this.updateCount();
       })
     },
     delItem(e){
