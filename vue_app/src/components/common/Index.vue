@@ -74,6 +74,8 @@
           <img :src="'http://127.0.0.1:5050/'+list[36].pic" alt />
         </a>
       </article>
+
+      <!-- 今日必抢 -->
       <article class="image-row">
         <a href="javascript:;" class="item">
           <img :src="'http://127.0.0.1:5050/'+list[17].pic" alt />
@@ -128,18 +130,26 @@
           </div>
         </div>
       </div>
+
+      <!--精选活动  -->
       <div v-if="lists!=''">
         <article class="image-row image-row-1">
           <a href="javascript:;" class="item">
             <img :src="'http://127.0.0.1:5050/'+lists[0].pic" alt />
           </a>
         </article>
+
+
+      <!-- secction第一个框 -->
         <article class="n-jx-activity">
+        <!-- 第一个框大图 -->
           <a href="javascript:;" class="header-a">
             <img :src="'http://127.0.0.1:5050/'+lists[2].pic" alt />
           </a>
+        <!-- 第一个框小图 -->
           <section class="activity-wrap">
-            <ul class="warp-ul">
+            <ul class="warp-ul" style="width:21.5rem">
+              <!-- 循环显示所有小图 -->
               <li class="image" v-for="(item,i) of p1" :key="i">
                 <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
                 <div class="desc">
@@ -147,37 +157,184 @@
                   <p>{{item.subtitle}}</p>
                 </div>
               </li>
+              <!-- 最后一张灰色logo图 -->
               <li class="image">
                 <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
-                <div class="desc">
-                  <p>{{lists[1].title}}</p>
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
                 </div>
               </li>
             </ul>
           </section>  
         </article>
-        <article class="image-row image-row-1">
-          <a href="javascript:;" class="item">
-            <img :src="'http://127.0.0.1:5050/'+lists[0].pic" alt />
-          </a>
-        </article>
+
+        <!-- secction第二个框 -->
         <article class="n-jx-activity">
+          <!-- 第二个框大图 -->
           <a href="javascript:;" class="header-a">
-            <img :src="'http://127.0.0.1:5050/'+lists[2].pic" alt />
+            <img :src="'http://127.0.0.1:5050/'+lists[10].pic" alt />
           </a>
+          <!-- 第二个框小图 -->
           <section class="activity-wrap">
-            <ul class="warp-ul">
-              <li class="image" v-for="(item,i) of p1" :key="i">
+            <ul class="warp-ul"  style="width:24.3rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p2" :key="i">
                 <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
                 <div class="desc">
                   <p>{{item.title}}</p>
                   <p>{{item.subtitle}}</p>
                 </div>
               </li>
+              <!-- 最后一张灰色logo图 -->
               <li class="image">
                 <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+
+        
+        <!-- secction第二个框 -->
+        <article class="n-jx-activity">
+          <!-- 第二个框大图 -->
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[10].pic" alt />
+          </a>
+          <!-- 第二个框小图 -->
+          <section class="activity-wrap">
+            <ul class="warp-ul"  style="width:24.3rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p2" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
                 <div class="desc">
-                  <p>{{lists[1].title}}</p>
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <!-- 最后一张灰色logo图 -->
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+
+
+        <!-- secction第三个框 -->
+        <article class="n-jx-activity">
+          <!-- 第三个框大图 -->
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[19].pic" alt />
+          </a>
+          <!-- 第三个框小图 -->
+          <section class="activity-wrap">
+            <ul class="warp-ul"  style="width:24.3rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p3" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <!-- 最后一张灰色logo图 -->
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+
+
+        <!-- secction第四个框 -->
+        <article class="n-jx-activity">
+          <!-- 第四个框大图 -->
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[28].pic" alt />
+          </a>
+          <!-- 第四个框小图 -->
+          <section class="activity-wrap">
+            <ul class="warp-ul"  style="width:24.3rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p4" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <!-- 最后一张灰色logo图 -->
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+
+
+        <!-- secction第五个框 -->
+        <article class="n-jx-activity">
+          <!-- 第五个框大图 -->
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[37].pic" alt />
+          </a>
+          <!-- 第五个框小图 -->
+          <section class="activity-wrap">
+            <ul class="warp-ul"  style="width:12.7rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p5" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <!-- 最后一张灰色logo图 -->
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+
+
+        <!-- secction第六个框 -->
+        <article class="n-jx-activity">
+          <!-- 第六个框大图 -->
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[42].pic" alt />
+          </a>
+          <!-- 第六个框小图 -->
+          <section class="activity-wrap">
+            <ul class="warp-ul"  style="width:24.3rem">
+              <!-- 循环显示所有小图 -->
+              <li class="image" v-for="(item,i) of p6" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <!-- 最后一张灰色logo图 -->
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc-bg">
+                  <p class="bg-text">{{lists[1].title}}</p>
                 </div>
               </li>
             </ul>
@@ -206,7 +363,17 @@ export default {
         this.lists = result.data.data;
         console.log(this.lists)
         var p1=this.lists.slice(3,9);
+        var p2=this.lists.slice(11,18);
+        var p3=this.lists.slice(20,27);
+        var p4=this.lists.slice(29,36);
+        var p5=this.lists.slice(38,41);
+        var p6=this.lists.slice(43,50);
         this.p1=p1;
+        this.p2=p2;
+        this.p3=p3;
+        this.p4=p4;
+        this.p5=p5;
+        this.p6=p6;
         console.log(this.p1)
       });
     }
@@ -217,13 +384,12 @@ export default {
 };
 </script>
  <style scoped>
-.app-index {
-  /* margin-top: 232.6px; */
-  height: 2000px;
+ .app-index{
+   height:9999px;
 }
 ul,
 li,
-div {
+div,p {
   margin: 0;
   padding: 0;
   outline: none;
@@ -452,12 +618,11 @@ img {
   display:flex;
   flex-wrap: nowrap;
   overflow:visible;
-  width:26.91rem;
 }
 .activity-wrap .warp-ul li{
   border:1px solid #ececec;
   margin:0.26667rem 0rem 0.4rem 0;
-  box-shadow: 0 0.0266667rem 0.08rem 0;
+  box-shadow: 0 0.0266667rem 0.08rem 0 #f2f2f2;
   background-color:#fff;
 }
 .activity-wrap .warp-ul .image:first-child{
@@ -469,6 +634,12 @@ img {
   height:2.86667rem;
   animation: fadein 350ms linear;
   opacity: 1;
+}
+.activity-wrap .warp-ul li:last-child{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
 }
 .activity-wrap .warp-ul .image .desc{
   border-top:1px solid #e5e5e5;
@@ -486,5 +657,25 @@ img {
 .activity-wrap .warp-ul .image .desc p:first-child{
   color:#333;
   font-size:0.4rem;
+}
+.activity-wrap .warp-ul .image .desc-bg{
+  border:none;
+   padding-top:0.106667rem;
+  padding-bottom:0.24rem;
+  width: 2.826667rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 0.266667rem;
+    color: #666;
+    line-height: 1.4;
+  }
+.activity-wrap .warp-ul .image .desc-bg .bg-text{
+    text-align: center;
+    font-size: 0.346667rem;
+    color: #696969;
+    width: 100%;
+    line-height: 1;
 }
 </style>
