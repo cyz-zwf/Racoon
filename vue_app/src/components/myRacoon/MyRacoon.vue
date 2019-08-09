@@ -1,42 +1,73 @@
 <template>
   <div>
-    <div class="top_icon">
-      <div class="left border-radius login_avatar">
-        <img src />
-      </div>
-      <img src="http://127.0.0.1:5050/img/ic_message.png" class="fixed message" />
-      <img src="http://127.0.0.1:5050/img/myracoon/settings.png" class="fixed settings" />
-    </div>
-    <div class="padding-5">
-      <div class="flex breadcrumbs">
-        <div class="flex flex-column">
-          <span class="bold margin-bottom-5">0</span>
-          <span class="font-12">收藏</span>
-        </div>|
-        <div class="flex flex-column">
-          <span class="bold margin-bottom-5">4</span>
-          <span class="font-12">关注</span>
-        </div>|
-        <div class="flex flex-column">
-          <span class="bold margin-bottom-5">2</span>
-          <span class="font-12">浏览足迹</span>
-        </div>|
-        <div class="flex flex-column">
-          <span class="bold margin-bottom-5">0</span>
-          <span class="font-12">优惠券</span>
-        </div>
+    <div class="myracoon_header">
+      <span>我的浣熊</span>
+      <div class="right_imgs">
+        <img class="settings" src="http://127.0.0.1:5050/img/myracoon/settings.png" />
+        <img class="message" src="http://127.0.0.1:5050/img/myracoon/cart_message.png" />
       </div>
     </div>
-    <div class="container padding-10">
-      <div class="myOrder_container">
-        <div class="flex myOrder padding-10">
-          <span class="bold font-15">我的订单</span>
-          <span class="font-12" style="line-height:17px">查看全部 ></span>
-        </div>
-        <div class="flex orderStatus padding-10">
-          
-        </div>
+    <div class="user_background">
+      <div class="user_icon_container">
+        <div class="user_icon"></div>
       </div>
+      <div class="username">小浣熊</div>
+    </div>
+    <div class="my_order">
+      <div style="color:#333">我的订单</div>
+      <div style="color:#999;font-size:13px" class="search_all">查看全部</div>
+    </div>
+    <div class="status_list">
+      <div class="flex status_list_item">
+        <div style="width:35px;height:35px">
+          <img style="width:28px;height:28px" src="http://127.0.0.1:5050/img/myracoon/all.png" />
+        </div>
+        <div>全部</div>
+      </div>
+      <div class="flex status_list_item">
+        <div style="width:35px;height:35px">
+          <img
+            style="width:25px;height:25px"
+            src="http://127.0.0.1:5050/img/myracoon/pendingPayment.png"
+          />
+        </div>
+        <div>待付款</div>
+      </div>
+      <div class="flex status_list_item">
+        <div style="width:35px;height:35px">
+          <img style="width:30px;height:30px" src="http://127.0.0.1:5050/img/myracoon/deliver.png" />
+        </div>
+        <div>待发货</div>
+      </div>
+      <div class="flex status_list_item">
+        <div style="width:35px;height:35px">
+          <img style="width:35px;height:35px" src="http://127.0.0.1:5050/img/myracoon/receipt.png" />
+        </div>
+        <div>待收货</div>
+      </div>
+      <div class="flex status_list_item">
+        <div style="width:35px;height:35px">
+          <img style="width:30px;height:30px" src="http://127.0.0.1:5050/img/myracoon/refund.png" />
+        </div>
+        <div>退款退货</div>
+      </div>
+    </div>
+    <div style="background:#f0f0f0;height:10px"></div>
+    <div class="bottom_base">
+      <span>我的优惠券</span>
+      <div>0张优惠券</div>
+    </div>
+    <div class="bottom_base">
+      <span>我的红包</span>
+      <div>总额0元</div>
+    </div>
+    <div class="bottom_base">
+      <span>我的收藏</span>
+      <div></div>
+    </div>
+    <div class="bottom_base">
+      <span>关于浣熊</span>
+      <div></div>
     </div>
   </div>
 </template>
@@ -49,89 +80,97 @@ export default {
 </script>
 <style scoped>
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
-.top_icon {
-  width: 100%;
-  height: 50px;
-  /* background: lightpink; */
-  position: relative;
-}
-.right {
-  float: right;
-}
-.left {
-  float: left;
-}
-.font-15{
-  font-size:15px;
-}
-.fixed {
-  position: fixed;
-}
-.settings {
-  width: 21px;
-  height: 21px;
-  right: 55px;
-  top: 16px;
-}
-.message {
-  width: 25px;
-  height: 25px;
-  right: 15px;
-  top: 15px;
-}
-.border-radius {
-  border-radius: 50%;
-}
-.login_avatar {
-  width: 30px;
-  height: 30px;
-  background: lightgray;
-  margin-left: 10px;
-  margin-top: 10px;
-  background-image: url(../../assets/ic_myhome_normal.png);
-  background-size: cover;
+  box-sizing: border-box;
 }
 .flex {
   display: flex;
 }
-.breadcrumbs {
-  width: 100%;
-  height: 60px;
-  /* background: lightblue; */
-  justify-content: space-around;
-  align-items: center;
+.myracoon_header {
+  height: 45px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 45px;
+  position: relative;
 }
-.flex-column {
-  flex-direction: column;
+.right_imgs {
+  float: right;
 }
-.font-12 {
-  font-size: 12px;
+.right_imgs > .settings {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 12.5px;
+  right: 45px;
 }
-.bold {
-  font-weight: bold;
+.right_imgs > .message {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  top: 11px;
+  right: 10px;
 }
-.margin-bottom-5 {
-  margin-bottom: 5px;
+.user_background {
+  height: 141px;
+  background: url("http://127.0.0.1:5050/img/myracoon/user_background.png")
+    no-repeat;
+  background-color: #f1f5fa;
+  background-size: cover;
+  padding-top: 23px;
+  padding-bottom: 5px;
 }
-.padding-5 {
-  padding: 5px;
+.user_icon {
+  width: 65px;
+  height: 65px;
+  background-image: url("http://127.0.0.1:5050/img/myracoon/user_icon.png");
+  background-size: cover;
+  border-radius: 50%;
+  margin: 0 auto;
 }
-.container {
-  width: 100%;
-  background: #eee;
+.username {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
 }
-.myOrder {
+.my_order {
+  display: flex;
+  height: 48px;
   justify-content: space-between;
+  padding: 0 15px;
+  line-height: 48px;
+  font-size: 15px;
+  border-bottom: solid 1px #f0f0f0;
 }
-.padding-10 {
-  padding: 10px;
+.status_list {
+  display: flex;
+  height: 60px;
+  font-size: 13px;
+  color: #333;
+  justify-content: space-around;
+  padding-top: 5px;
 }
-.myOrder_container{
-  background: #fff;
-  border-bottom:1px solid #eee;
+.status_list_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.bottom_base {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  border-bottom: solid 1px #f0f0f0;
+  line-height: 48px;
+  color: #333;
+  font-size: 15px;
+  padding: 0 15px;
+}
+.bottom_base>div,.search_all{
+  background-image:url(http://127.0.0.1:5050/img/myracoon/right.png);
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center right;
+  padding-right:25px;
 }
 </style>
