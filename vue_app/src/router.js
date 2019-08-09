@@ -9,6 +9,7 @@ import Index from './components/common/Index.vue'
 import Cart from './components/Cart/Cart.vue'
 
 import Login from './components/Index/Login.vue' // 登录vue
+import Recommend from './components/common/Recommend.vue' // 登录vue
 
 Vue.use(Router)
 
@@ -38,6 +39,10 @@ export default new Router({
         {
             path: '/Login',
             component: Login
+        },
+        {
+            path: '/Recommend',
+            component: Recommend
         },
 
 
