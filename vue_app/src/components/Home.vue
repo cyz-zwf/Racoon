@@ -5,14 +5,18 @@
     <!-- 面板组件 -->
     <mt-tab-container v-model="active">
       <mt-tab-container-item id="index">
-        <headerlb></headerlb>
+        <!-- 主页内容 -->
+        <headerlb></headerlb> 
         <indexs></indexs>
       </mt-tab-container-item>
       <mt-tab-container-item id="list">
-        这里是分类内容组件
+        <!-- 分类页内容 -->
         <list></list>
       </mt-tab-container-item>
-      <mt-tab-container-item id="cart"><cart></cart></mt-tab-container-item>
+      <mt-tab-container-item id="cart">
+        <!-- 购物车页内容 -->
+        <cart></cart>
+      </mt-tab-container-item>
       <mt-tab-container-item id="myhome">这里是我的浣熊内容组件</mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
