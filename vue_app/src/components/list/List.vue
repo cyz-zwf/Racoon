@@ -15,67 +15,78 @@
                 <ul id="rightUl">
                     <li class="active">
                         <h6>为你分类</h6>
-                        <div></div>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>美容</h6>
-                        <div></div>
+                        <h6>美容彩妆</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>奶粉纸尿裤</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>母婴专区</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>营养保健</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>数码专家</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>个人洗护</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>服饰鞋靴</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>运动户外</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>手表配饰</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>家居生活</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>轻奢</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>充值中心</h6>
+                        <listicon></listicon>
+                    </li>
+                     <li>
+                        <h6>环球美食</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>全球工厂店</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>海外旗舰店</h6>
+                        <listicon></listicon>
                     </li>
                     <li>
-                        <h6>奶粉</h6>
-                        <div></div>
+                        <h6>生鲜</h6>
+                        <listicon></listicon>
+                    </li>
+                    <li>
+                        <h6>宠物生活</h6>
+                        <listicon></listicon>
+                    </li>
+                    <li>
+                        <h6>国家地区馆</h6>
                     </li>
                 </ul>
             </div>
@@ -83,6 +94,7 @@
     </div>
 </template>
 <script>
+import Listicon from './Listicon'//引入子组件
 export default {
     methods:{
         checked(e){
@@ -117,9 +129,12 @@ export default {
     },
     data(){
         return {
-            lis:["为你分类","美容彩妆","奶粉纸尿裤","母婴专区","营养保健","数码专家","个人洗护","服饰鞋靴","运动户外","手表配饰","家居生活","轻奢","充值中心","服饰鞋靴","运动户外","手表配饰","家居生活","轻奢","充值中心","美容彩妆","奶粉纸尿裤","母婴专区","营养保健"],
+            lis:["为你分类","美容彩妆","奶粉纸尿裤","母婴专区","营养保健","数码专家","个人洗护","服饰鞋靴","运动户外","手表配饰","家居生活","轻奢","充值中心","环球美食","全球工厂店","海外旗舰店","生鲜","宠物生活","国家地区馆"],
             active:"",
         }
+    },
+    components:{
+        "listicon" : Listicon
     }
 }
 </script>
@@ -130,12 +145,14 @@ p{margin:0;padding:0}
   display:flex;
   margin-top:42px;
   border-top :1px solid rgba(133, 126, 126,.2);
+
 }
 /* 左侧分类栏 */
 .left_ul{
     list-style-type:none;
     padding:0px;
     margin:0;
+    margin-bottom:45px;
 }
 /* 左侧设置每个li的值 */
 .left_ul li{
@@ -179,5 +196,10 @@ p{margin:0;padding:0}
 /* 切换显示和隐藏 */
 .rightlist ul li.active{
     display:block;
+}
+.rightlist ul li h6{
+    font-size:.35rem;
+    margin-top: -26px;
+    margin-left: -202px;
 }
 </style>
