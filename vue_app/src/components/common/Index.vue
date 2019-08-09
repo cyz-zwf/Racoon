@@ -128,6 +128,62 @@
           </div>
         </div>
       </div>
+      <div v-if="lists!=''">
+        <article class="image-row image-row-1">
+          <a href="javascript:;" class="item">
+            <img :src="'http://127.0.0.1:5050/'+lists[0].pic" alt />
+          </a>
+        </article>
+        <article class="n-jx-activity">
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[2].pic" alt />
+          </a>
+          <section class="activity-wrap">
+            <ul class="warp-ul">
+              <li class="image" v-for="(item,i) of p1" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc">
+                  <p>{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+        <article class="image-row image-row-1">
+          <a href="javascript:;" class="item">
+            <img :src="'http://127.0.0.1:5050/'+lists[0].pic" alt />
+          </a>
+        </article>
+        <article class="n-jx-activity">
+          <a href="javascript:;" class="header-a">
+            <img :src="'http://127.0.0.1:5050/'+lists[2].pic" alt />
+          </a>
+          <section class="activity-wrap">
+            <ul class="warp-ul">
+              <li class="image" v-for="(item,i) of p1" :key="i">
+                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
+                <div class="desc">
+                  <p>{{item.title}}</p>
+                  <p>{{item.subtitle}}</p>
+                </div>
+              </li>
+              <li class="image">
+                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
+                <div class="desc">
+                  <p>{{lists[1].title}}</p>
+                </div>
+              </li>
+            </ul>
+          </section>  
+        </article>
+      </div>
     </div>
   </div>
 </template>
@@ -135,7 +191,9 @@
 export default {
   data() {
     return {
-      list: ""
+      list: "",
+      lists:"",
+      p1:[]
     };
   },
   methods: {
@@ -143,6 +201,13 @@ export default {
       // 获取商品分页数据
       this.axios.get("index").then(result => {
         this.list = result.data.data;
+      });
+      this.axios.get("section").then(result => {
+        this.lists = result.data.data;
+        console.log(this.lists)
+        var p1=this.lists.slice(3,9);
+        this.p1=p1;
+        console.log(this.p1)
       });
     }
   },
@@ -362,5 +427,64 @@ img {
   margin-top: 0.56rem;
   height: 2.053333rem;
   width: 2.053333rem;
+}
+.n-jx-activity {
+  display:flex;
+  flex-direction: column;
+  margin-bottom:-0.88rem;
+}
+.n-jx-activity .header-a{
+      position: relative;
+    width: 10rem;
+    height: 6rem;
+    overflow: hidden;
+}
+.n-jx-activity .header-a img{
+    width:100%;
+    height:100%;
+}
+.activity-wrap{
+  overflow: scroll;
+  position: relative;
+  top:-0.88rem
+}
+.activity-wrap .warp-ul{
+  display:flex;
+  flex-wrap: nowrap;
+  overflow:visible;
+  width:26.91rem;
+}
+.activity-wrap .warp-ul li{
+  border:1px solid #ececec;
+  margin:0.26667rem 0rem 0.4rem 0;
+  box-shadow: 0 0.0266667rem 0.08rem 0;
+  background-color:#fff;
+}
+.activity-wrap .warp-ul .image:first-child{
+  margin-left:0.4rem;
+  border-left-width:1px;
+}
+.activity-wrap .warp-ul .image img{
+  width:2.86667rem;
+  height:2.86667rem;
+  animation: fadein 350ms linear;
+  opacity: 1;
+}
+.activity-wrap .warp-ul .image .desc{
+  border-top:1px solid #e5e5e5;
+  padding-top:0.106667rem;
+  padding-bottom:0.24rem;
+  width: 2.826667rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 0.266667rem;
+    color: #666;
+    line-height: 1.4; 
+}
+.activity-wrap .warp-ul .image .desc p:first-child{
+  color:#333;
+  font-size:0.4rem;
 }
 </style>
