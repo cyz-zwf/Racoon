@@ -213,3 +213,11 @@ app.get("/recommend",(req,res)=>{
         });
     })
 })
+
+app.get("/logout",(req,res)=>{
+    // delete req.session.uid;
+    // delete req.session.uname;
+    req.session.destroy();
+    // res.redirect("/");
+    console.log(req.session);
+})

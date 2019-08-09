@@ -89,6 +89,7 @@ export default {
           }
         });
     },
+    
     changeIcon() {
       if (this.typeIcon % 2 !== 0) {
         this.doIcon = "down-icon.png";
