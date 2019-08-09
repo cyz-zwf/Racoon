@@ -16,7 +16,7 @@
       <mt-tab-container-item id="myhome"><myracoon></myracoon></mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
-    <mt-tabbar v-model="active" fixed>
+    <mt-tabbar v-model="active" fixed style="z-index:3">
       <mt-tab-item id="index" @click.native="ChangeState(0)">
         <tabbaricon
           :selectedImage="require('../assets/ic_index_selected.png')"

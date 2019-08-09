@@ -4,11 +4,17 @@
 
 .header-search {
     width: 100%;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     /* flex-direction: column; */
     align-items: center;
     justify-content: space-around;
+    /* overflow: hidden; */
+    height: 39px;
+    z-index: 1000;
+    background-color: #fff;
 }
 
 .header-btn {
@@ -16,6 +22,18 @@
     height: 23px;
     color: #e31436 !important;
     border: 1px solid #e31436 !important;
+    display: block;
+}
+
+.login-su {
+    display: none;
+    width: 24px;
+    height: 24px;
+    background: url('../ic_myhome_normal.png') no-repeat 0 center;
+    background-size: cover;
+    margin-left: 3px;
+    border-radius: 50%;
+    background-color: #ddd;
 }
 
 .header-input {
@@ -73,18 +91,4 @@
     text-align: center;
     line-height: 20px;
     /* border: 1px solid #f00; */
-}
-
-.hederlb-img {
-    width: 100%;
-    /* height: 200px; */
-}
-
-.mint-swipe {
-    height: 187px;
-}
-
-.mint-swipe .mint-swipe-indicators {
-    bottom: 8px;
-    opacity: 0.5;
 }

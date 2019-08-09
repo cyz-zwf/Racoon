@@ -1,14 +1,6 @@
 <template>
   <div class="headerlb">
-    <div class="header-search">
-      <div class="header-input">
-        <span class="header-span-search"></span>
-        <span class="header-span-info">七夕日,爱的日</span>
-      </div>
-      <mt-button size="small" plain class="header-btn">登录</mt-button>
-      <a href="javascript:;" class="header-cart-a"></a>
-    </div>
-
+    <headerse></headerse>
     <mt-swipe :auto="3000">
       <mt-swipe-item v-for="(item,i) of items" :key="i">
         <a :href="item.href">
@@ -57,5 +49,18 @@ export default {
 </script>
 
 <style>
-@import url("../../assets/css/headerlb.css");
+.hederlb-img {
+  width: 100%;
+  /* height: 200px; */
+}
+
+.headerlb .mint-swipe {
+  height: 187px;
+  margin-top: 39px;
+}
+
+.headerlb .mint-swipe .mint-swipe-indicators {
+  bottom: 8px;
+  opacity: 0.5;
+}
 </style>
