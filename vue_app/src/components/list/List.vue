@@ -3,15 +3,15 @@
         <headerse></headerse>
         <!-- listbox -->
         <div class="listbox">
-            <div class="leftlist">
+            <section class="leftlist" >
                 <ul class="left_ul" > 
-                    <li  v-for="(item,i) of lis" :key="i">
-                        <div class="listColor " :data-i=i @click="checked"  >{{item}}</div> 
+                    <li  v-for="(item,i) of lis" :key="i" >
+                        <div class="listColor" :data-i=i @click="checked"  >{{item}}</div> 
                     </li>
                 </ul>
-            </div>
+            </section>
             <!-- 展示框 -->
-            <div class="rightlist">
+            <div class="rightlist" >
                 <ul id="rightUl">
                     <li class="active">
                         <h6>为你分类</h6>
@@ -97,6 +97,11 @@
 import Listicon from './Listicon'//引入子组件
 export default {
     methods:{
+        init(){
+            var i=document.querySelector("div.listColor");
+            i.classList.add("color");
+
+        },
         checked(e){
             var div=e.target;//获得当前元素
             var i=e.target.dataset.i; //拿到对应的下标来关联面板
@@ -106,8 +111,17 @@ export default {
             if(div.className!="color"){
                 //遍历除当前点击div外其他div中的clas样式清掉
                 for(var item of divs){
-                    item.className="";//在给当前div添加样式color
-                    item.className="listColor";
+
+                    //当点击时背景变红后判断i 计算移动的位置
+                    //1判断当0<i<=5的时候ul不变   2当6<=i<=10的时候移动到中部  3当11<=i<=15的时候移动到中部,当i>15
+                    var ul= item.parentElement.parentElement
+                    var style=getComputedStyle(ul)
+                    if(i>5 && i<15){
+                        ul.style.transition="all .5s linear";
+                        ul.style.marginTop="-245px";
+                    }
+                          
+                item.classList.remove("color");//在给当前div移除样式color(避免冲突)
                     
                     //切换内容 显示对应右侧的li
                     var rightUl=document.getElementById("rightUl");
@@ -125,6 +139,8 @@ export default {
                 }
             } 
             div.classList.add("color")//就显示背景   
+            
+
         }
     },
     data(){
@@ -135,7 +151,11 @@ export default {
     },
     components:{
         "listicon" : Listicon
+    },
+    mounted(){
+        this.init();
     }
+
 }
 </script>
 <style scoped>
@@ -160,8 +180,8 @@ p{margin:0;padding:0}
     height:35px;
     font-size: .35rem; 
 }
+
  li div.listColor{
-    /* background-color:tomato; */
     width:100px;
     height:20px;
     text-align:center;
@@ -170,6 +190,7 @@ p{margin:0;padding:0}
     margin-left:10px;
     margin-top:7.5px;
 }
+
 .left_ul li div.color{
     width:100px;
     height:20px;
@@ -185,6 +206,9 @@ p{margin:0;padding:0}
 .rightlist{
   width:100%;
   border-left:1px solid rgba(133, 126, 126,.2);
+        position: fixed;
+    right: -128px;
+    
 }
 /* 右侧ul */
 .rightlist ul{
@@ -192,6 +216,7 @@ p{margin:0;padding:0}
 }
 .rightlist ul li{
     display:none;
+    
 }
 /* 切换显示和隐藏 */
 .rightlist ul li.active{
@@ -200,6 +225,7 @@ p{margin:0;padding:0}
 .rightlist ul li h6{
     font-size:.35rem;
     margin-top: -26px;
-    margin-left: -202px;
+    text-align:left;
+     margin-left: -19px;
 }
 </style>
