@@ -35,9 +35,21 @@ app.use(session({
 app.use(express.static("public"));
 app.listen(5050);
 
-// 主页
+// 主页index部分
 app.get("/index", (req, res) => {
     var sql = "select hid,pic,href from racoon_index_product";
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "查询成功",
+            data: result
+        });
+    });
+});
+// 主页section部分
+app.get("/section", (req, res) => {
+    var sql = "select pic,title,subtitle from racoon_index_section";
     pool.query(sql, (err, result) => {
         if (err) throw err;
         res.send({
@@ -211,3 +223,12 @@ app.get("/list",(req,res)=>{
     });
 });
 //测试:http://127.0.0.1:5050/list
+})
+
+app.get("/logout",(req,res)=>{
+    // delete req.session.uid;
+    // delete req.session.uname;
+    req.session.destroy();
+    // res.redirect("/");
+    console.log(req.session);
+})

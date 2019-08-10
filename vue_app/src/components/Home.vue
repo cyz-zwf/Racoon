@@ -17,7 +17,7 @@
         <!-- 购物车页内容 -->
         <cart></cart>
       </mt-tab-container-item>
-      <mt-tab-container-item id="myhome">这里是我的浣熊内容组件</mt-tab-container-item>
+      <mt-tab-container-item id="myhome"><myracoon></myracoon></mt-tab-container-item>
     </mt-tab-container>
     <!-- 底部的导航条 -->
     <mt-tabbar v-model="active" fixed style="z-index:3">
