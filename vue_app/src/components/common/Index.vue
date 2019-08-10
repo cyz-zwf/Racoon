@@ -167,35 +167,6 @@
             </ul>
           </section>  
         </article>
-
-        <!-- secction第二个框 -->
-        <article class="n-jx-activity">
-          <!-- 第二个框大图 -->
-          <a href="javascript:;" class="header-a">
-            <img :src="'http://127.0.0.1:5050/'+lists[10].pic" alt />
-          </a>
-          <!-- 第二个框小图 -->
-          <section class="activity-wrap">
-            <ul class="warp-ul"  style="width:24.3rem">
-              <!-- 循环显示所有小图 -->
-              <li class="image" v-for="(item,i) of p2" :key="i">
-                <img  :src="'http://127.0.0.1:5050/'+item.pic" alt="">
-                <div class="desc">
-                  <p>{{item.title}}</p>
-                  <p>{{item.subtitle}}</p>
-                </div>
-              </li>
-              <!-- 最后一张灰色logo图 -->
-              <li class="image">
-                <img  :src="'http://127.0.0.1:5050/'+lists[1].pic" alt="">
-                <div class="desc-bg">
-                  <p class="bg-text">{{lists[1].title}}</p>
-                </div>
-              </li>
-            </ul>
-          </section>  
-        </article>
-
         
         <!-- secction第二个框 -->
         <article class="n-jx-activity">
@@ -342,6 +313,7 @@
         </article>
       </div>
     </div>
+    <recommend></recommend>
   </div>
 </template>
  <script>
@@ -380,13 +352,11 @@ export default {
   },
   created() {
     this.loadMore();
-  }
+  },
+  
 };
 </script>
  <style scoped>
- .app-index{
-   height:9999px;
-}
 ul,
 li,
 div,p {
