@@ -185,3 +185,25 @@ INSERT INTO racoon_recommend VALUES
 (null,015,"pinko-bag.webp",1499,"PINKO 品高 MINI LOVE系列 女士铆钉装饰燕子包 斜挎包 迷你"),
 (null,350,"kiehls-cream.webp",359,"Kiehl's 科颜氏 高保湿面霜"),
 (null,146,"switch.webp",2499,"任天堂（Nintendo）Switch 皮卡丘主题限定款便携掌上游戏机 Switch NS");
+
+
+
+
+/*************分页*************/
+CREATE TABLE racoon_list(
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  img_url VARCHAR(25),
+  title VARCHAR(255)
+);
+INSERT INTO racoon_list VALUES
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水"),
+(null,"xs.webp","香水");

@@ -212,7 +212,18 @@ app.get("/recommend",(req,res)=>{
             data: result
         });
     })
-})
+});
+
+// 分类功能
+app.get("/list",(req,res)=>{
+    var sql="SELECT img_url,title FROM racoon_list";
+    pool.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send({code:1,data:result})
+    });
+});
+//测试:http://127.0.0.1:5050/list
+
 
 app.get("/logout",(req,res)=>{
     // delete req.session.uid;
