@@ -1,66 +1,19 @@
 <template>
   <div class="headerlb">
+    <!-- 搜索框 -->
     <headerse></headerse>
-    <mt-swipe :auto="3000">
-      <mt-swipe-item v-for="(item,i) of items" :key="i">
-        <a :href="item.href">
-          <img :src="item.url" class="hederlb-img" />
-        </a>
-      </mt-swipe-item>
-    </mt-swipe>
+    <!-- 轮播图 -->
+    <headerhbmove></headerhbmove>
   </div>
 </template>
 
 <script>
-import { Swipe, SwipeItem } from "mint-ui";
-import "mint-ui/lib/style.css";
 export default {
-  components: {
-    "mt-swipe": Swipe,
-    "mt-swipe-item": SwipeItem
-  },
   data() {
-    return {
-      items: [
-        {
-          href: "http://google.com",
-          url: "http://127.0.0.1:5050/img/haderimg/f2.webp"
-        },
-        {
-          href: "http://baidu.com",
-          url: "http://127.0.0.1:5050/img/haderimg/f3.webp"
-        },
-        {
-          href: "http://baidu.com",
-          url: "http://127.0.0.1:5050/img/haderimg/f4.webp"
-        },
-        {
-          href: "http://baidu.com",
-          url: "http://127.0.0.1:5050/img/haderimg/f5.webp"
-        },
-        {
-          href: "http://baidu.com",
-          url: "http://127.0.0.1:5050/img/haderimg/f6.webp"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>
 
 <style>
-.hederlb-img {
-  width: 100%;
-  /* height: 200px; */
-}
-
-.headerlb .mint-swipe {
-  height: 187px;
-  margin-top: 39px;
-}
-
-.headerlb .mint-swipe .mint-swipe-indicators {
-  bottom: 8px;
-  opacity: 0.5;
-}
 </style>

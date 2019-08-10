@@ -10,6 +10,8 @@ import Cart from './components/Cart/Cart.vue'
 
 import Login from './components/Index/Login.vue' // 登录vue
 import Recommend from './components/common/Recommend.vue' // 登录vue
+import Details from './components/Index/Details.vue' // 详情vue
+import HeaderLbMove from './components/Index/HeaderLbMove.vue'
 
 Vue.use(Router)
 
@@ -44,7 +46,14 @@ export default new Router({
             path: '/Recommend',
             component: Recommend
         },
-
+        {
+            path: '/Details',
+            component: Details
+        },
+        {
+            path: '/HeaderLbMove',
+            component: HeaderLbMove
+        }
 
     ]
 })
