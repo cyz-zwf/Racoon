@@ -15,6 +15,8 @@ Vue.component("headerlb", HeaderLb)
 import HeaderSe from './components/Index/HeaderSe.vue'
 // 全局顶部搜索框,使用方法同上
 Vue.component("headerse", HeaderSe);
+import  Recommend  from  './components/common/Recommend'
+Vue.component("recommend", Recommend);
 
 Vue.use(MintUI)
 Vue.config.productionTip = false
