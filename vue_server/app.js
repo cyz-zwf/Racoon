@@ -223,7 +223,7 @@ app.get("/list",(req,res)=>{
     });
 });
 //测试:http://127.0.0.1:5050/list
-})
+
 
 app.get("/logout",(req,res)=>{
     // delete req.session.uid;
