@@ -20,7 +20,7 @@
           <!-- 2.1.2 -->
           <div class="warehouse-name">
             <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_ziying.png"  />
-            <router-link to="/" class="warehouse-shop-link">自营直邮仓</router-link>
+            <span class="warehouse-shop-link">自营直邮仓</span>
           </div>
         </div>
         <!-- 2.2商品主体 -->
@@ -189,6 +189,7 @@ export default {
         var i=0;
         for(var item of rows){
           this.list[i].count=rows[i].count;
+          i++;
         }
       })
       for(var item of this.list){
@@ -270,7 +271,7 @@ export default {
       var i=e.target.dataset.i;
       var lid=e.target.dataset.lid;
       var status=e.target.dataset.status;
-      
+
       if(this.list[i].count>1){
         this.list[i].count-=1;
         if(status){ //只有选中的商品才能计算在总计内
@@ -344,7 +345,7 @@ export default {
   font-size: 18px;
 }
 .top_btn{
-  width: 25px;
+  width: 24px;
   background: url("http://127.0.0.1:5050/img/cart/cart_message.png") no-repeat;
   background-size: 100%;
   margin-top: 18px;

@@ -172,7 +172,7 @@ export default {
     },
     enter(el, done) {
       el.offsetWidth;
-      el.style.animation = "ball-in 1s";
+      el.style.animation = "ball-in 0.25s";
       done();
     },
     afterEnter(el) {
@@ -533,35 +533,17 @@ export default {
   0% {
     transform: translate3d(0px, 0px, 0px);
   }
-  10% {
-    transform: translate3d(-5px, -10px, 0px);
+  25% {
+    transform: translate3d(-22px, -35px, 0px);
   }
-  20% {
-    transform: translate3d(-8px, -20px, 0px);
-  }
-  30% {
-    transform: translate3d(-10px, -30px, 0px);
-  }
-  30% {
-    transform: translate3d(-12px, -40px, 0px);
-  }
-  40% {
-    transform: translate3d(-14px, -50px, 0px);
-  }
+  /* 45% {
+    transform: translate3d(-34px, -45px, 0px);
+  } */
   50% {
-    transform: translate3d(-16px, -70px, 0px);
+    transform: translate3d(-44px, -45px, 0px);
   }
-  60% {
-    transform: translate3d(-40px, -50px, 0px);
-  }
-  70% {
-    transform: translate3d(-50px, -40px, 0px);
-  }
-  80% {
-    transform: translate3d(-55px, -30px, 0px);
-  }
-  90% {
-    transform: translate3d(-60px, -20px, 0px);
+  75% {
+    transform: translate3d(-66px, -35px, 0px);
   }
   100% {
     transform: translate3d(-88px, -15px, 0px);
