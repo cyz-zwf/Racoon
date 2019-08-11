@@ -119,7 +119,7 @@ app.get("/cart", (req, res) => {
         res.send({ code: -1, msg: "请先登录" });
         return;
     }
-    var sql = "SELECT id,lid,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
+    var sql = "SELECT id,lid,img_url,title,price,count,spec,status FROM racoon_cart WHERE uid=?";
     pool.query(sql, [uid], (err, result) => {
         if (err) throw err;
         if(result.length>0){ //购物车有商品
@@ -195,6 +195,31 @@ app.get("/updateCount", (req, res) => {
     var uid = req.session.uid;
     var lid = req.query.lid;
     sql = `UPDATE racoon_cart SET count=${count} WHERE lid=${lid} AND uid=${uid}`;
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "更新成功"
+        })
+    })
+})
+app.get("/updateStatus", (req, res) => {
+    var status = req.query.status;
+    var uid = req.session.uid;
+    var lid = req.query.lid;
+    sql = `UPDATE racoon_cart SET status=${status} WHERE lid=${lid} AND uid=${uid}`;
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "更新成功"
+        })
+    })
+})
+app.get("/updateAllStatus", (req, res) => {
+    var status = req.query.status;
+    var uid = req.session.uid;
+    sql = `UPDATE racoon_cart SET status=${status} WHERE uid=${uid}`;
     pool.query(sql, (err, result) => {
         if (err) throw err;
         res.send({
