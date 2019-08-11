@@ -333,7 +333,7 @@ export default {
       });
       this.axios.get("section").then(result => {
         this.lists = result.data.data;
-        console.log(this.lists)
+        // console.log(this.lists)
         var p1=this.lists.slice(3,9);
         var p2=this.lists.slice(11,18);
         var p3=this.lists.slice(20,27);
@@ -346,7 +346,7 @@ export default {
         this.p4=p4;
         this.p5=p5;
         this.p6=p6;
-        console.log(this.p1)
+        // console.log(this.p1)
       });
     }
   },
