@@ -35,9 +35,21 @@ app.use(session({
 app.use(express.static("public"));
 app.listen(5050);
 
-// 主页
+// 主页index部分
 app.get("/index", (req, res) => {
     var sql = "select hid,pic,href from racoon_index_product";
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "查询成功",
+            data: result
+        });
+    });
+});
+// 主页section部分
+app.get("/section", (req, res) => {
+    var sql = "select pic,title,subtitle from racoon_index_section";
     pool.query(sql, (err, result) => {
         if (err) throw err;
         res.send({
@@ -107,7 +119,7 @@ app.get("/cart", (req, res) => {
         res.send({ code: -1, msg: "请先登录" });
         return;
     }
-    var sql = "SELECT id,lid,img_url,title,price,count,spec FROM racoon_cart WHERE uid=?";
+    var sql = "SELECT id,lid,img_url,title,price,count,spec,status FROM racoon_cart WHERE uid=?";
     pool.query(sql, [uid], (err, result) => {
         if (err) throw err;
         if(result.length>0){ //购物车有商品
@@ -191,6 +203,31 @@ app.get("/updateCount", (req, res) => {
         })
     })
 })
+app.get("/updateStatus", (req, res) => {
+    var status = req.query.status;
+    var uid = req.session.uid;
+    var lid = req.query.lid;
+    sql = `UPDATE racoon_cart SET status=${status} WHERE lid=${lid} AND uid=${uid}`;
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "更新成功"
+        })
+    })
+})
+app.get("/updateAllStatus", (req, res) => {
+    var status = req.query.status;
+    var uid = req.session.uid;
+    sql = `UPDATE racoon_cart SET status=${status} WHERE uid=${uid}`;
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send({
+            code: 1,
+            msg: "更新成功"
+        })
+    })
+})
 app.get("/recommend",(req,res)=>{
     var sql = "SELECT id,lid,img_url,price,title FROM racoon_recommend";
     pool.query(sql, (err, result) => {
@@ -200,7 +237,18 @@ app.get("/recommend",(req,res)=>{
             data: result
         });
     })
-})
+});
+
+// 分类功能
+app.get("/list",(req,res)=>{
+    var sql="SELECT img_url,title FROM racoon_list";
+    pool.query(sql,(err,result)=>{
+        if(err)throw err;
+        res.send({code:1,data:result})
+    });
+});
+//测试:http://127.0.0.1:5050/list
+
 
 app.get("/logout",(req,res)=>{
     // delete req.session.uid;

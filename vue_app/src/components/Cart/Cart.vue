@@ -20,7 +20,7 @@
           <!-- 2.1.2 -->
           <div class="warehouse-name">
             <img slot="icon" src="http://127.0.0.1:5050/img/cart/cart_ziying.png"  />
-            <router-link to="/" class="warehouse-shop-link">自营直邮仓</router-link>
+            <span class="warehouse-shop-link">自营直邮仓</span>
           </div>
         </div>
         <!-- 2.2商品主体 -->
@@ -28,7 +28,7 @@
           <div class="cartitem" v-for="(item,i) of list" :key="i">
             <div class="cartitem-left">
               <div class="checkbox">
-                <img slot="icon" :src="item.cb?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'"  @click="check" :data-i=i />
+                <img slot="icon" :src="item.status?'http://127.0.0.1:5050/img/cart/cart_selected.png':'http://127.0.0.1:5050/img/cart/cart_unselected.png'"  @click="check" :data-i=i :data-lid="item.lid" :data-count="item.count" />
               </div>
             </div>
             <div class="cartitem-right">
@@ -59,12 +59,12 @@
                       <div class="number-mvp">
                         <div class="number-mvp-inner">
                           <div class="number-minus">
-                            <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid"></div>
+                            <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid" :data-status="item.status"></div>
                           </div>
                           <input type="text" v-model="item.count" class="number-value" disabled>
                           <!-- <div class="number-value">{{item.count}}</div> -->
                           <div class="number-plus">
-                            <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid"></div>
+                            <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid" :data-status="item.status"></div>
                           </div>
                         </div>
                       </div>
@@ -97,7 +97,7 @@
           </div>
           <!-- 结算按钮 -->
           <div class="billbar-right">
-            <div class="billbar-button">结算</div>
+            <div class="billbar-button">结算({{$store.getters.getCartCount}})</div>
           </div>
         </div>
       </div>
@@ -135,30 +135,48 @@ export default {
     return{
       // count:[],
       list:[],
-      total:0,
-      isLogin:1,
-      // ca变量绑定全选框状态
-      ca:false
+      total:0, //总计
+      isLogin:1, // 绑定用户登录状态
+      ca:false  // 绑定全选框状态
     }
   },
   methods:{
     LoadMore(){
-      
+      this.$store.commit("clearItem");  //先清空购物车数量
+      this.total=0;
       this.ca=0;
       var url="cart";
       this.axios.get(url).then(result=>{
-        if(result.data.code>0){
+        if(result.data.code>0){  //表示购物车有商品
+          // console.log(result);
+          var rows=result.data.data;
+          for(var item of rows){
+            item.status = item.status==0?false:true; //将status改成布尔值
+          }
           this.isLogin=1;
-          this.list=result.data.data;
-          // var i=0;
-          // for(var item of rows){
-          //   // item.cb=false;
-          //   this.count[i]=item.count;
-          //   i++;
-          // }
-        }else if(result.data.code<0){
+          this.list=rows;
+          var flag=true;
+          for(var item of this.list){
+            var p=item.price;
+            var c=item.count;
+            // this.$store.commit("clearItem")
+            if(item.status){  //选中同时计算总价
+              this.total+=c*p;
+              for(var i=0;i<c;i++){
+                this.$store.commit("addItem")
+              }
+            }else{
+              this.ca=false;
+              flag=false;
+            }
+          }
+          if(flag){
+            this.ca=true;
+          }
+          // console.log(this.list)
+        }else if(result.data.code<0){   //表示用户未登录
           this.isLogin=-1;
-        }else{
+        }else{  //表示购物车内无商品
           this.isLogin=0;
         }
       })
@@ -171,26 +189,43 @@ export default {
         var i=0;
         for(var item of rows){
           this.list[i].count=rows[i].count;
+          i++;
         }
       })
       for(var item of this.list){
         var p=item.price;
         var c=item.count;
-        if(item.cb){
+        if(item.status){
           this.total+=c*p;
         }
       }
     },
     check(e){
       var i=e.target.dataset.i;
-      var p,c;
+      var lid=e.target.dataset.lid;
+      var count=e.target.dataset.count;
       this.total=0;
-      this.list[i].cb=!this.list[i].cb
+      this.list[i].status=!this.list[i].status; //改变选中框状态
+      if(this.list[i].status){
+        for(var a=0;a<count;a++){
+          this.$store.commit("addItem")
+        }
+      }else{
+        for(var a=0;a<count;a++){
+          this.$store.commit("subItem")
+        }
+      }
+      var url="updateStatus";
+      var obj={status:this.list[i].status?1:0,lid};
+      this.axios.get(url,{params:obj}).then(result=>{
+        // this.LoadMore();
+      })
+      // this.LoadMore();
       var flag=true;
       for(var item of this.list){
-        p=item.price;
-        c=item.count;
-        if(item.cb){
+        var p=item.price;
+        var c=item.count;
+        if(item.status){  //选中同时计算总价
           this.total+=c*p;
         }else{
           this.ca=false;
@@ -203,25 +238,45 @@ export default {
     },
     checkAll(){
       this.ca=!this.ca;
-      if(this.ca){
+      if(this.ca){ //全选框选中时
+        this.$store.commit("clearItem");
         for(var item of this.list){
-          item.cb=true;
+          item.status=true;
           var p=item.price;
           var c=item.count;
-          this.total+=c*p;
+          this.total+=c*p;  //修改总计
+          for(var a=0;a<c;a++){
+            this.$store.commit("addItem")
+          }
         }
-      }else{
+        var url="updateAllStatus";
+        var obj={status:1};
+        this.axios.get(url,{params:obj}).then(result=>{
+          // this.LoadMore();
+        })
+      }else{ //全选框取消选中时
         for(var item of this.list){
-          item.cb=false;
+          item.status=false;
+          this.$store.commit("clearItem")
           this.total=0;
         }
+        var url="updateAllStatus";
+        var obj={status:0};
+        this.axios.get(url,{params:obj}).then(result=>{
+          // this.LoadMore();
+        })
       }
     },
     minus(e){
       var i=e.target.dataset.i;
       var lid=e.target.dataset.lid;
+      var status=e.target.dataset.status;
+
       if(this.list[i].count>1){
         this.list[i].count-=1;
+        if(status){ //只有选中的商品才能计算在总计内
+          this.$store.commit("subItem")
+        }
       };
       //发送axios请求
       var url="updateCount";
@@ -235,7 +290,12 @@ export default {
       // this.count[i]+=1;
       // console.log(this.count[i])
       var lid=e.target.dataset.lid;
+      var status=e.target.dataset.status;
+
       this.list[i].count+=1;
+      if(status){  //只有选中的商品才能计算在总计内
+        this.$store.commit("addItem")
+      }
       //发送axios请求
       var url="updateCount";
       var obj={count:this.list[i].count,lid};
@@ -285,7 +345,7 @@ export default {
   font-size: 18px;
 }
 .top_btn{
-  width: 25px;
+  width: 24px;
   background: url("http://127.0.0.1:5050/img/cart/cart_message.png") no-repeat;
   background-size: 100%;
   margin-top: 18px;
