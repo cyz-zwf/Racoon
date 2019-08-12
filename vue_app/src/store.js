@@ -4,9 +4,9 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: { 
+  state: {
     cartCount: 0,  //保存购物车数量
-    isLogged:false,
+    isLogged: false,
   },
   mutations: {
     addItem(state) {
@@ -18,11 +18,12 @@ export default new Vuex.Store({
     clearItem(state) {
       state.cartCount = 0;
     },
-    isLogin(){
-      state.isLogged=true;
+    isLogin() {
+      state.isLogged = true;
     },
-    isLogout(){
-      state.isLogged=false;
+    isLogout() {
+      state.isLogged = false;
+    },
   },
   getters: {
     getCartCount(state) {
