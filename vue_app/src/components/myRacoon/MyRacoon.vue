@@ -11,7 +11,8 @@
       <div class="user_icon_container">
         <div class="user_icon"></div>
       </div>
-      <div class="username">小浣熊</div>
+      <!-- <div class="username">小浣熊</div> -->
+      <div class="username" @click="toLogin">登录/注册</div>
     </div>
     <div class="my_order">
       <div style="color:#333">我的订单</div>
@@ -55,11 +56,13 @@
     <div style="background:#f0f0f0;height:10px"></div>
     <div class="bottom_base">
       <span>我的优惠券</span>
-      <div>68张优惠券</div>
+      <!-- <div>68张优惠券</div> -->
+      <div></div>
     </div>
     <div class="bottom_base">
       <span>我的钱包</span>
-      <div>总额100亿</div>
+      <!-- <div>总额100亿</div> -->
+      <div></div>
     </div>
     <div class="bottom_base">
       <span>我的关注</span>
@@ -73,23 +76,17 @@
       <span>关于浣熊</span>
       <div></div>
     </div>
-    <div>
-      <div class="bottom_list">
-        <div>首页</div>
-        <span>|</span>
-        <div>客户端</div>
-        <span>|</span>
-        <div>小浣熊</div>
-        <span>|</span>
-        <div @click="exit">退出</div>
-      </div>
-    </div>
+    <recommend></recommend>
   </div>
 </template>
 <script>
+import Recommend from "../common/Recommend"
 export default {
   data() {
     return {};
+  },
+  components:{
+    "recommend":Recommend
   },
   methods: {
     exit() {
@@ -108,16 +105,14 @@ export default {
         this.$router.push("/")
         console.log(222);
       })
+    },
+    toLogin(){
+      this.$router.push("/Login")
     }
   }
 };
 </script>
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .flex {
   display: flex;
 }
@@ -157,7 +152,8 @@ export default {
 .user_icon {
   width: 65px;
   height: 65px;
-  background-image: url("http://127.0.0.1:5050/img/myracoon/user_icon.png");
+  /* background-image: url("http://127.0.0.1:5050/img/myracoon/user_icon.png"); */
+  background-image: url("http://127.0.0.1:5050/img/myracoon/noLog.png");
   background-size: cover;
   border-radius: 50%;
   margin: 0 auto;
@@ -216,5 +212,8 @@ export default {
   font-size: 13px;
   padding: 20px 25px;
   align-items: center;
+}
+.recommend{
+    padding-bottom: 1.4rem;
 }
 </style>
