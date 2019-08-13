@@ -3,7 +3,7 @@
     <!-- Cart.vue组件 -->
     <!-- 1.头部 -->
     <mt-header fixed title="购物车">
-      <mt-button slot="right" class="top_btn"></mt-button>
+      <mt-button @click="toMessages" slot="right" class="top_btn"></mt-button>
     </mt-header>
     <!-- 2.商品 -->
     <!-- 正常显示的界面 -->
@@ -141,6 +141,9 @@ export default {
     }
   },
   methods:{
+    toMessages(){
+      this.$router.push("/Messages")
+    },
     LoadMore(){
       this.$store.commit("clearItem");  //先清空购物车数量
       this.total=0;

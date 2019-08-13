@@ -4,6 +4,8 @@ import Router from 'vue-router'
 
 import Home from './components/Home.vue'
 import MyRacoon from './components/myRacoon/MyRacoon.vue'
+import Settings from "./components/myRacoon/Settings.vue"
+import Messages from "./components/myRacoon/Messages.vue"
 
 import Index from './components/common/Index.vue'
 import Cart from './components/Cart/Cart.vue'
@@ -29,6 +31,14 @@ export default new Router({
         {
             path: '/MyRacoon',
             component: MyRacoon
+        },
+        {
+            path:'/Settings',
+            component:Settings
+        },
+        {
+            path:'/Messages',
+            component:Messages
         },
         {
             path: '/Cart',
