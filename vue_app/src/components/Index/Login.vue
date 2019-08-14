@@ -86,6 +86,7 @@ export default {
             // 登录成功 跳转首页
             this.$router.push("/");
             // console.log(result.data);
+            this.$store.commit("Login");
           }
         });
     },

@@ -250,10 +250,21 @@ app.get("/list",(req,res)=>{
 //测试:http://127.0.0.1:5050/list
 
 
+//退出登录
 app.get("/logout",(req,res)=>{
     // delete req.session.uid;
     // delete req.session.uname;
-    req.session.destroy();
-    // res.redirect("/");
-    console.log(req.session);
+    if(req.session!==undefined){
+        req.session.destroy();
+        res.send({code:1,msg:"退出成功"});
+    }
+})
+
+//获取消息列表
+app.get("/msgList",(req,res)=>{
+    var sql = "SELECT id,img_url,uname,content FROM msg_list";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    });
 })

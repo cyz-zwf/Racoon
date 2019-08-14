@@ -3,15 +3,17 @@
     <div class="myracoon_header">
       <span>我的浣熊</span>
       <div class="right_imgs">
-        <img class="settings" src="http://127.0.0.1:5050/img/myracoon/settings.png" />
-        <img class="message" src="http://127.0.0.1:5050/img/myracoon/cart_message.png" />
+        <img @click="toSettings" class="settings" src="http://127.0.0.1:5050/img/myracoon/settings.png" />
+        <img @click="toMessages" class="message" src="http://127.0.0.1:5050/img/myracoon/cart_message.png" />
       </div>
     </div>
     <div class="user_background">
       <div class="user_icon_container">
-        <div class="user_icon"></div>
+        <img v-show="!this.isLogin" class="user_icon" src="http://127.0.0.1:5050/img/myracoon/noLog.png">
+        <img v-show="this.isLogin" class="user_icon" src="http://127.0.0.1:5050/img/myracoon/user_icon.png">
       </div>
-      <div class="username">小浣熊</div>
+      <div v-show="!isLogin" class="username" @click="toLogin">登录/注册</div>
+      <div v-show="isLogin" class="username">小浣熊</div>
     </div>
     <div class="my_order">
       <div style="color:#333">我的订单</div>
@@ -55,11 +57,13 @@
     <div style="background:#f0f0f0;height:10px"></div>
     <div class="bottom_base">
       <span>我的优惠券</span>
-      <div>68张优惠券</div>
+      <div v-show="isLogin">68张优惠券</div>
+      <div v-show="!isLogin"></div>
     </div>
     <div class="bottom_base">
       <span>我的钱包</span>
-      <div>总额100亿</div>
+      <div v-show="isLogin">总额100亿</div>
+      <div v-show="!isLogin"></div>
     </div>
     <div class="bottom_base">
       <span>我的关注</span>
@@ -73,23 +77,19 @@
       <span>关于浣熊</span>
       <div></div>
     </div>
-    <div>
-      <div class="bottom_list">
-        <div>首页</div>
-        <span>|</span>
-        <div>客户端</div>
-        <span>|</span>
-        <div>小浣熊</div>
-        <span>|</span>
-        <div @click="exit">退出</div>
-      </div>
-    </div>
+    <recommend></recommend>
   </div>
 </template>
 <script>
+import Recommend from "../common/Recommend"
 export default {
   data() {
-    return {};
+    return {
+      isLogin:false
+    };
+  },
+  components:{
+    "recommend":Recommend
   },
   methods: {
     exit() {
@@ -108,16 +108,32 @@ export default {
         this.$router.push("/")
         console.log(222);
       })
+    },
+    toLogin(){
+      this.$router.push("/Login")
+    },
+    judge(){
+      this.axios.get("sessinfo").then(res=>{
+        console.log(res)
+        if(res.data.code>0){
+          this.isLogin=true
+        }
+        console.log(this.isLogin);
+      })
+    },
+    toSettings(){
+       this.$router.push("/Settings")
+    },
+    toMessages(){
+      this.$router.push("/Messages")
     }
-  }
+  },
+  mounted() {
+    this.judge();
+  },
 };
 </script>
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .flex {
   display: flex;
 }
@@ -157,15 +173,13 @@ export default {
 .user_icon {
   width: 65px;
   height: 65px;
-  background-image: url("http://127.0.0.1:5050/img/myracoon/user_icon.png");
+  /* background-image: url("http://127.0.0.1:5050/img/myracoon/user_icon.png"); */
   background-size: cover;
   border-radius: 50%;
-  margin: 0 auto;
 }
 .username {
   text-align: center;
   font-size: 20px;
-  margin-top: 10px;
 }
 .my_order {
   display: flex;
@@ -216,5 +230,8 @@ export default {
   font-size: 13px;
   padding: 20px 25px;
   align-items: center;
+}
+.recommend{
+    padding-bottom: 1.4rem;
 }
 </style>

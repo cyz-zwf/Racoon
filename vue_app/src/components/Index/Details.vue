@@ -536,9 +536,6 @@ export default {
   25% {
     transform: translate3d(-22px, -35px, 0px);
   }
-  /* 45% {
-    transform: translate3d(-34px, -45px, 0px);
-  } */
   50% {
     transform: translate3d(-44px, -45px, 0px);
   }

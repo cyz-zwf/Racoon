@@ -73,7 +73,8 @@ export default {
   },
   data() {
     return {
-      active: "index",
+      // active: back||"index",
+      active: this.$store.getters.getBack || "index",
       currentIndex: [
         { isSelect: true },
         { isSelect: false },
@@ -92,8 +93,14 @@ export default {
           this.currentIndex[i].isSelect = false;
         }
       }
+    },
+    load(){
+      this.$store.commit("recoverBack")
     }
-  }
+  },
+  created() {
+    this.load()
+  },
 };
 </script>
 <style scoped>

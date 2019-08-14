@@ -3,7 +3,7 @@
     <!-- Cart.vue组件 -->
     <!-- 1.头部 -->
     <mt-header fixed title="购物车">
-      <mt-button slot="right" class="top_btn"></mt-button>
+      <mt-button @click="toMessages" slot="right" class="top_btn"></mt-button>
     </mt-header>
     <!-- 2.商品 -->
     <!-- 正常显示的界面 -->
@@ -59,12 +59,12 @@
                       <div class="number-mvp">
                         <div class="number-mvp-inner">
                           <div class="number-minus">
-                            <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid" :data-status="item.status"></div>
+                            <div class="number-minus-inner" @click="minus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
                           <input type="text" v-model="item.count" class="number-value" disabled>
                           <!-- <div class="number-value">{{item.count}}</div> -->
                           <div class="number-plus">
-                            <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid" :data-status="item.status"></div>
+                            <div class="number-plus-inner" @click="plus" :data-i='i' :data-lid="item.lid"></div>
                           </div>
                         </div>
                       </div>
@@ -125,7 +125,6 @@
     </div>
     <recommend></recommend>
   </div>
-  
 </template>
 <script>
 // 引用recommend组件
@@ -133,7 +132,6 @@ import Recommend from "../common/Recommend"
 export default {
   data(){
     return{
-      // count:[],
       list:[],
       total:0, //总计
       isLogin:1, // 绑定用户登录状态
@@ -141,6 +139,9 @@ export default {
     }
   },
   methods:{
+    toMessages(){
+      this.$router.push("/Messages")
+    },
     LoadMore(){
       this.$store.commit("clearItem");  //先清空购物车数量
       this.total=0;
@@ -181,6 +182,22 @@ export default {
         }
       })
     },
+    judge(){ //判断是否全选
+      var flag=true;
+      for(var item of this.list){
+        var p=item.price;
+        var c=item.count;
+        if(item.status){  //选中同时计算总价
+          this.total+=c*p;
+        }else{
+          this.ca=false;
+          flag=false;
+        }
+      }
+      if(flag){
+        this.ca=true;
+      }
+    },
     updateCount(){
       this.total=0;
       var url="cart";
@@ -204,7 +221,7 @@ export default {
       var i=e.target.dataset.i;
       var lid=e.target.dataset.lid;
       var count=e.target.dataset.count;
-      this.total=0;
+      this.total=0; //先将总计清零
       this.list[i].status=!this.list[i].status; //改变选中框状态
       if(this.list[i].status){
         for(var a=0;a<count;a++){
@@ -217,28 +234,16 @@ export default {
       }
       var url="updateStatus";
       var obj={status:this.list[i].status?1:0,lid};
-      this.axios.get(url,{params:obj}).then(result=>{
-        // this.LoadMore();
-      })
-      // this.LoadMore();
-      var flag=true;
-      for(var item of this.list){
-        var p=item.price;
-        var c=item.count;
-        if(item.status){  //选中同时计算总价
-          this.total+=c*p;
-        }else{
-          this.ca=false;
-          flag=false;
-        }
-      }
-      if(flag){
-        this.ca=true;
-      }
+      this.axios.get(url,{params:obj})
+      // .then(result=>{
+      //   // this.LoadMore();
+      // })
+      this.judge(); //判断全选状态
     },
     checkAll(){
       this.ca=!this.ca;
       if(this.ca){ //全选框选中时
+        this.total=0
         this.$store.commit("clearItem");
         for(var item of this.list){
           item.status=true;
@@ -270,38 +275,47 @@ export default {
     minus(e){
       var i=e.target.dataset.i;
       var lid=e.target.dataset.lid;
-      var status=e.target.dataset.status;
+      var item=this.list[i];
 
-      if(this.list[i].count>1){
-        this.list[i].count-=1;
-        if(status){ //只有选中的商品才能计算在总计内
+      if(item.count>1){
+        item.count-=1;
+        if(item.status){ //只有选中的商品才能计算在总计内
           this.$store.commit("subItem")
         }
       };
       //发送axios请求
       var url="updateCount";
-      var obj={count:this.list[i].count,lid};
+      var obj={count:item.count,lid};
       this.axios.get(url,{params:obj}).then(result=>{
-        this.updateCount();
+        this.updateCount(); //更新数量
       }) 
     },
     plus(e){
       var i=e.target.dataset.i;
-      // this.count[i]+=1;
-      // console.log(this.count[i])
       var lid=e.target.dataset.lid;
-      var status=e.target.dataset.status;
-
-      this.list[i].count+=1;
-      if(status){  //只有选中的商品才能计算在总计内
-        this.$store.commit("addItem")
-      }
+      var item=this.list[i];
+      item.count+=1; //将商品数量+1
+      
       //发送axios请求
-      var url="updateCount";
-      var obj={count:this.list[i].count,lid};
+      var url="updateCount"; //改变数据库中数量
+      var obj={count:item.count,lid};
       this.axios.get(url,{params:obj}).then(result=>{
         this.updateCount();
       })
+      var url="updateStatus";  //改变数据库中选中状态
+      var obj={status:item.status?1:0,lid};
+      this.axios.get(url,{params:obj}).then(result=>{
+        // this.LoadMore();
+      })
+      if(item.status){  //只有选中的商品才能计算在总计内
+        this.$store.commit("addItem")
+      }else{
+        item.status=true;
+        for(var i=0;i<item.count;i++){
+          this.$store.commit("addItem")
+        }
+      }
+      this.judge(); //判断全选状态
     },
     delItem(e){
       var id=e.target.dataset.id;
@@ -325,9 +339,7 @@ export default {
   created(){
     this.LoadMore();
   },
-  mounted(){ //为list中每一项添加cb属性
-  },
-  components:{
+  components:{ //注册Recommend子组件
     "recommend":Recommend
   }
 }
