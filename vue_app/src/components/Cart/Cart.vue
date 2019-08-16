@@ -119,7 +119,7 @@
         <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png" class="unlogin-page-icon"></div>
         <div class="unlogin-page-text">那么多好商品，你都不加购物车?</div>
         <div>
-          <a href="http://127.0.0.1:8888/#/Login" class="unlogin-page-button">登录并同步购物车商品</a>
+          <router-link to="/Login" class="unlogin-page-button">登录并同步购物车商品</router-link>
         </div>
       </div>
     </div>
