@@ -58,7 +58,7 @@ export default {
 .commodity{
   box-sizing: border-box;
   /* width: 4.6rem; */
-  width: 45%;
+  width: 47%;
   padding: 0.093333rem 0;
   margin: 0.1323rem;
   border: 1px solid #ececec;
