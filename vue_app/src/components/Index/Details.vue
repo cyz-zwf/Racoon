@@ -88,7 +88,7 @@
           <router-link to class="customer-btn btn-2">立即购买</router-link>
         </div>
       </div>
-      <!-- <div class="skushow-cart" v-show="!isCart">
+      <div class="skushow-cart" v-show="!isCart">
         <div class="skushow-name">
           <span>数量</span>
           <span @click.native="jumpNum"></span>
@@ -116,7 +116,7 @@
         <div class="a-btn">
           <router-link to class="link-btn" @click.native="jumpNum">确认</router-link>
         </div>
-      </div>-->
+      </div>
     </article>
   </div>
 </template>
@@ -172,14 +172,14 @@ export default {
     },
     enter(el, done) {
       el.offsetWidth;
-      el.style.animation = "ball-in 0.25s";
+      el.style.animation = "ball-in .30s";
       done();
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     },
     jumpNum() {
-      //   this.isCart = !this.isCart;
+      this.isCart = !this.isCart;
       this.appBallShow();
     }
   }
