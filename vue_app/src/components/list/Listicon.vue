@@ -33,10 +33,14 @@ export default {
 <style scoped>
 div.left{
     margin-left:-60px;
-    margin-top:-18px;
 }
     ul{
         list-style-type:none ;
+    }
+    ul::after{
+        content:"";
+        display:block;
+        clear:both;
     }
     ul li{
         float:left;
