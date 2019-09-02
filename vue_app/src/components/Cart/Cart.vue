@@ -311,7 +311,7 @@ export default {
       })
       var url="updateStatus";  //改变数据库中选中状态
       var obj={status:item.status?1:0,lid};
-      console.log(obj)
+      // console.log(obj)
       this.axios.get(url,{params:obj}).then(result=>{
         // this.LoadMore();
       })

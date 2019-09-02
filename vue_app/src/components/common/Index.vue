@@ -313,7 +313,7 @@
         </article>
       </div>
     </div>
-    <recommend></recommend>
+    <recommend style="padding-bottom:1.4rem"></recommend>
   </div>
 </template>
  <script>

@@ -183,7 +183,6 @@ p {
 .listbox {
   display: flex;
   margin-top: 42px;
-  border-top: 1px solid rgba(133, 126, 126, 0.2);
 }
 .leftlist {
   width: 35%;
