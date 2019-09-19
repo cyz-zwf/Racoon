@@ -119,7 +119,7 @@
         <div><img src="http://127.0.0.1:5050/img/cart/emptyCart.png" class="unlogin-page-icon"></div>
         <div class="unlogin-page-text">那么多好商品，你都不加购物车?</div>
         <div>
-          <a href="http://127.0.0.1:8888/#/Login" class="unlogin-page-button">登录并同步购物车商品</a>
+          <router-link to="/Login" class="unlogin-page-button">登录并同步购物车商品</router-link>
         </div>
       </div>
     </div>
@@ -166,6 +166,7 @@ export default {
               for(var i=0;i<c;i++){
                 this.$store.commit("addItem")
               }
+              
             }else{
               this.ca=false;
               flag=false;
@@ -234,10 +235,9 @@ export default {
       }
       var url="updateStatus";
       var obj={status:this.list[i].status?1:0,lid};
-      this.axios.get(url,{params:obj})
-      // .then(result=>{
-      //   // this.LoadMore();
-      // })
+      this.axios.get(url,{params:obj}).then(result=>{
+        // this.LoadMore();
+      })
       this.judge(); //判断全选状态
     },
     checkAll(){
@@ -295,18 +295,6 @@ export default {
       var lid=e.target.dataset.lid;
       var item=this.list[i];
       item.count+=1; //将商品数量+1
-      
-      //发送axios请求
-      var url="updateCount"; //改变数据库中数量
-      var obj={count:item.count,lid};
-      this.axios.get(url,{params:obj}).then(result=>{
-        this.updateCount();
-      })
-      var url="updateStatus";  //改变数据库中选中状态
-      var obj={status:item.status?1:0,lid};
-      this.axios.get(url,{params:obj}).then(result=>{
-        // this.LoadMore();
-      })
       if(item.status){  //只有选中的商品才能计算在总计内
         this.$store.commit("addItem")
       }else{
@@ -315,6 +303,18 @@ export default {
           this.$store.commit("addItem")
         }
       }
+      //发送axios请求
+      var url="updateCount"; //改变数据库中数量
+      var obj={count:item.count,lid};
+      this.axios.get(url,{params:obj}).then(result=>{
+        this.updateCount();
+      })
+      var url="updateStatus";  //改变数据库中选中状态
+      var obj={status:item.status?1:0,lid};
+      // console.log(obj)
+      this.axios.get(url,{params:obj}).then(result=>{
+        // this.LoadMore();
+      })
       this.judge(); //判断全选状态
     },
     delItem(e){
@@ -656,6 +656,9 @@ export default {
   font-size: 15px;
   height: 1.33333rem;
   align-items: center;
+}
+.billbar-button-disabled{
+  background: #c1c1c1;
 }
 /* 未登录显示的界面 */
 .unlogin-page{

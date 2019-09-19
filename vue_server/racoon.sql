@@ -198,16 +198,16 @@ CREATE TABLE racoon_list(
 );
 INSERT INTO racoon_list VALUES
 (null,"xs.webp","香水"),
+(null,"fangs.webp","防晒"),
+(null,"jh01.webp","精华"),
+(null,"jh02.webp","香水"),
+(null,"mianmo.webp","面膜"),
 (null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水"),
-(null,"xs.webp","香水");
+(null,"fangs.webp","防晒"),
+(null,"jh01.webp","精华"),
+(null,"jh02.webp","香水"),
+(null,"mianmo.webp","面膜"),
+(null,"xiezh.webp","卸妆");
 
 
 
