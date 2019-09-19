@@ -98,8 +98,12 @@ export default {
       this.$store.commit("recoverBack")
     }
   },
-  created() {
-    this.load()
+  mounted() {
+    if(this.$store.getters.getBack){
+      console.log(111)
+      this.ChangeState(3)
+    }
+    this.load();    
   },
 };
 </script>
